@@ -1,0 +1,21 @@
+<include file="common/header" title="文章" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/highlightJS/styles/atelier-cave.dark.css">
+<include file="common/nav" />
+
+<div class="container">
+	<div class="page-header" id="banner">
+		<div class="row">
+			<div class="col-md-9 column">
+				<div class="blog-post">
+                    <h2 class="blog-post-title"><a href="{:U('Article/detailArticle')}?id={$list.id}">{$list.title}</a></h2>
+                    <p class="blog-post-meta">{$list.create_time|strtotime|date="F d",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a></p>
+                    <hr>
+                    <p>{$list.content|htmlspecialchars_decode=###}</p>
+                </div>  
+			</div>
+			<include file="common/sidebar"/>	
+		</div>
+	</div>
+</div>
+</body>
+</html>

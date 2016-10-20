@@ -1,0 +1,27 @@
+<include file="common/header" title="首页"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/highlightJS\styles\atelier-cave.dark.css">
+<include file="common/nav"/>
+
+<div class="container">
+    <div class="page-header" id="banner">
+        <div class="row">
+            <div class="col-md-9 column">
+                <foreach name="lists" item="list">
+                    <div class="blog-post">
+                        <h2 class="blog-post-title"><a href="{:U('Article/detailArticle')}?id={$list.id}">{$list.title}</a></h2>
+                        <p class="blog-post-meta">{$list.create_time|strtotime|date="F d",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a></p>
+                        <p>{$list.content|htmlspecialchars_decode=###}</p>
+                    </div>    
+                </foreach>
+                <!-- /.blog-post -->  
+                <nav>
+                {$page}
+                </nav>
+            </div>
+            <!-- /.blog-main -->
+            <include file="common/sidebar"/>
+        </div>
+    </div>
+</div>
+</body>
+</html>

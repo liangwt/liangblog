@@ -1,0 +1,116 @@
+<?php
+namespace Home\Controller;
+use Think\Controller;
+
+class LoginController extends Controller{
+	function register(){
+/*		if(!IS_AJAX){
+			E('页面不存在');
+		}*/
+		$account   = I("post.account");
+		$password  = I("post.password");
+		$rpassword = I("post.rpassword");
+		if(empty($account) || empty($password) || empty($rpassword) ){
+			$responseJsData['status'] = 0;
+			$responseJsData['message'] = '不能为空';
+			echo json_encode($responseJsData);
+			return false;
+		}
+		//验证密码是否一致
+		if($rpassword!=$password){
+			$responseJsData['status']  = 0;
+			$responseJsData['message'] = '密码不一致';
+			echo json_encode($responseJsData);
+			return false;
+		}
+		//验证账号是否存在
+		$existAccount = array('account'=>$account);
+		$result = D('user')->where($existAccount)->find();
+		if(!empty($result)){
+			$responseJsData['status']  = 0;
+			$responseJsData['message'] = '账号已存在';
+			echo json_encode($responseJsData);
+			return false;
+		}
+		//创建账号
+		$registerAccount = array(
+			'account'  => $account,
+			'password' => md5($password),
+			'reg_time' => date("Y-m-d H:i:s"),
+			'user_info' => array(
+				'username' => $account,
+				),
+			);
+		$uid = D('UserRelation') -> relation(true)-> add($registerAccount);
+		if($uid){
+			$_SESSION['uid']      = $uid;
+			$_SESSION['username'] = $account;
+			//加入cookie
+			$ip = get_client_ip();
+			setcookie('auto',encryption($ip."|".$uid),time()+3600*24*7,'/');
+			//返回json数据
+			$responseJsData['status']  = 1;
+			$responseJsData['message'] = '账号创建成功';
+			echo json_encode($responseJsData);
+		}else{
+			$responseJsData['status']  = 0;
+			$responseJsData['message'] = '账号创建失败';
+			echo json_encode($responseJsData);
+		}
+	}
+
+	function login(){
+		$account   = I("post.account");
+		$password  = I("post.password");
+		$auto = I("post.auto");
+
+		//验证账号是否存在
+		$existAccount = array('account'=>$account);
+		$result = D('user')->where($existAccount)->find();
+		if($result == null){
+			$responseJsData['status'] = 0;
+			$responseJsData['message'] = '账号不存在';
+			echo json_encode($responseJsData);
+			return false;
+		}
+		if($result['password'] != md5($password)){
+			$responseJsData['status'] = 0;
+			$responseJsData['message'] = '密码错误';
+			echo json_encode($responseJsData);
+			return false;
+		}
+		if($result['lock']){
+			$responseJsData['status'] = 0;
+			$responseJsData['message'] = '账号已锁定';
+			echo json_encode($responseJsData);
+			return false;
+		}
+		//
+		$_SESSION['uid'] = $result['id'];
+		$_SESSION['username'] = $account;
+		if($auto){
+			//加入cookie
+			$ip = get_client_ip();
+			setcookie('auto',encryption($ip."|".$result['id']),time()+3600*24*7,'/');
+		}
+
+		//返回json数据
+		$responseJsData['status'] = 1;
+		$responseJsData['message'] = '登陆成功';
+		echo json_encode($responseJsData);
+	}
+
+	function logout(){
+		unset($_SESSION['uid']);
+		unset($_SESSION['username']);
+		setcookie('auto','',time()-3600,'/');
+		$responseJsData['status']  = 1;
+		$responseJsData['message'] = '退出登录';
+		echo json_encode($responseJsData);
+	}
+
+}
+
+
+
+?>

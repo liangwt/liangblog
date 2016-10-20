@@ -1,0 +1,89 @@
+$(function(){
+	var editor = new wangEditor('writearticle');
+	//配置表情
+	editor.config.emotions = {
+    	// 支持多组表情
+
+	    // 第一组，id叫做 'default' 
+	    'default': {
+	        title: '默认',  // 组名称
+	        data: './emotions.data'  // 服务器的一个json文件url，例如官网这里配置的是 http://www.wangeditor.com/wangEditor/test/emotions.data
+	    },
+	    // 第二组，id叫做'weibo'
+	    'weibo': {
+	        title: '微博表情',  // 组名称
+	        data: emotions,
+	    }
+	    // 下面还可以继续，第三组、第四组、、、
+	};
+	//配置吸顶距离
+	editor.config.menuFixed = 70;
+	// 插入代码时的默认语言
+	editor.config.codeDefaultLang = 'php'
+	editor.config.jsFilter = false;
+    editor.create();
+
+    //添加分类模态框
+    $("select[name=classification]").change(function(){
+    	if($("select option:selected").val() == "add"){
+    		$("#addClassification").modal();
+    	}
+    })
+
+    //ajax提交添加的分类信息到服务器
+    $("#add_class").click(function(){
+    	var classification = $("#classification").val();
+    	$.ajax({
+    		url:classUrl,
+    		type:"POST",
+    		datatype:"json",
+    		data:{"classification":classification},
+    		success:function(msg){
+    			var json_data = $.parseJSON(msg);
+    			if(json_data.status){
+    				$("#add").before("<option selected='selected' value="+json_data.message+">"+classification+"</option>");
+    				$("#addClassification").modal("hide");
+    				toastr.success(classification+"已添加");
+    			}else{
+    				toastr.error(classification+json_data.message);
+    			}
+    		}
+    	})
+    	
+    })
+
+    //本地多标签输入框
+    $("input[name=tag]").tagsInput({
+    	'defaultText':'添加标签',
+    	'height':'100px',
+   		'width':'100%',
+   		'delimiter': [',',';'], 
+    });
+
+    //通过ajax提交博客信息到服务器
+    $("#publish_btn").click(function(){
+		var html  = editor.$txt.html();
+		var title = $("input[name=title]").val();
+		var classification = $("select option:selected").val();
+		var tag = new Array();
+		$("span.tag > span").each(function(i,n){
+			tag[i] = $(this).text();	
+		});
+
+    	$.ajax({
+			url:saveArticle,
+			type:"POST",
+			datatype:"json",
+			data:{
+				"content":html,
+				"title":title,
+				"tag":tag,
+				"classification":classification,
+			},
+    		success:function(msg){ 
+    			var json_data = $.parseJSON(msg);
+    			toastr.success(json_data.message);
+    		}
+    	})
+    })
+})
