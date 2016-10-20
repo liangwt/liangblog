@@ -10,6 +10,7 @@
 <script type="text/javascript" src="__PUBLIC__/wangEditor/js/lib/emotions.js"></script>
 <script type="text/javascript" src="__PUBLIC__/wangEditor/js/wangEditor.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/TagsInput/dist/jquery.tagsinput.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/validtion/dist/jquery.validate.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Js/writeArticle.js"></script>
 
 <include file="common/nav"/>
@@ -23,13 +24,13 @@
 	      </div>
 	      <div class="modal-body">
 	        <form role="form">
-				<div class="form-group">
+				<div class="form-group has-feedback">
 					<input type="text" class="form-control" id="classification" placeholder="Enter classification">
 				</div>
 			</form>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal" id="close_btn">Close</button>
 	        <button type="button" class="btn btn-primary" id="add_class">Save changes</button>
 	      </div>
 	    </div>
@@ -41,9 +42,10 @@
 		<div class="page-header" id="banner">
 			<div class="row">
 				<div class="col-md-12 column" style="height:0px;padding-bottom:100%">
-					<div class="form-group">
+					<div class="form-group has-feedback">
 						<label for="title">文章标题</label>
 						<input type="text" class="form-control" name="title" placeholder="文章标题">
+						<span class='glyphicon glyphicon-remove form-control-feedback' style="display: none"></span>
 					</div>
 					<div>
 						<textarea class="form-control" id="writearticle" style="height:100%;"></textarea>
@@ -52,10 +54,10 @@
 						<label for="classification">分类</label>
 						<div>
 							<select name="classification" class="form-control">
-								<option value="0">选择分类</option>
+								<option value="0" id="choose">选择分类</option>
 								<foreach name="classification" item="cla">
 									<option value="{$cla.id}">{$cla.classification}</option>
-								</foreach>
+								</foreach> 
 								<option value="add" id="add">新建分类</option>
 							</select>
 						</div>

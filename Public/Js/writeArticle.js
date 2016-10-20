@@ -23,13 +23,29 @@ $(function(){
 	editor.config.jsFilter = false;
     editor.create();
 
+
+    //文章标题不能为空
+    $("input[name=title]").blur(function(){
+    	if($(this).val().length==0){
+	    	$(this).siblings("span").show()
+	    		   .parent().addClass("has-error");	
+	    	toastr.warning("标题不能为空");
+    	}		       
+    }).focus(function(){
+    	$(this).siblings("span").hide()
+	    	   .parent().removeClass("has-error");	
+    })
+
     //添加分类模态框
     $("select[name=classification]").change(function(){
     	if($("select option:selected").val() == "add"){
     		$("#addClassification").modal();
     	}
     })
-
+    //关闭模态框时select恢复
+    $("#close_btn").click(function(){
+    	$("#choose").prop("selected","selected");
+    })
     //ajax提交添加的分类信息到服务器
     $("#add_class").click(function(){
     	var classification = $("#classification").val();
@@ -45,6 +61,7 @@ $(function(){
     				$("#addClassification").modal("hide");
     				toastr.success(classification+"已添加");
     			}else{
+    				$("#classification").after("<span class='glyphicon glyphicon-remove form-control-feedback'></span>")
     				toastr.error(classification+json_data.message);
     			}
     		}
@@ -69,7 +86,10 @@ $(function(){
 		$("span.tag > span").each(function(i,n){
 			tag[i] = $(this).text();	
 		});
-
+		if(title == ''){
+			toastr.warning("标题不能为空");
+			return false;
+		}
     	$.ajax({
 			url:saveArticle,
 			type:"POST",
