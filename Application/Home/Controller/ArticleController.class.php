@@ -3,6 +3,18 @@ namespace Home\Controller;
 use Home\Controller\CommonController;
 
 class ArticleController extends CommonController{
+
+	private $articleL;
+	private $classificationL;
+
+	public function _initialize(){
+		parent::_initialize();
+		//获取分类列表
+		$article = D("ArticleView");
+		$this->classificationL = $article ->field("classification,count(distinct article.id)") -> where("article.uid=".$_SESSION['uid'])->group("classification")->select();
+		$this -> assign("classificationL",$this->classificationL);
+	}
+
 	public function writeArticle(){
 		$classification = D("classification")->select();
 		$this->assign("classification",$classification);
@@ -12,15 +24,19 @@ class ArticleController extends CommonController{
 	 * 显示博客列表
 	 * @return [type] [description]
 	 */
-	public function showArticle(){
+	public function showArticle(){	
 		$article = D("ArticleView");
-		$lists = $article->where("article.uid=".$_SESSION['uid'])->order('create_time desc')->page(I("get.p",1).',5')->select();
-		$this->assign('lists',$lists);// 赋值数据集
-		$count = $article->where("article.uid=".$_SESSION['uid'])->count("article.id");
+
+		//分页之后的文章列表
+		$this->articleL = $article->where("article.uid=".$_SESSION['uid'])->group("article.id")->order('create_time desc')->page(I("get.p",1).',5')->select();		
+		$this->assign('lists',$this->articleL);// 赋值数据集
+		//页码标签
+		$count = $article->where("article.uid=".$_SESSION['uid'])->count("distinct article.id");
 		$page  = new \Think\Page($count,5);
 		$show  = $page->show();
+
 		$this->assign("page",$show);
-		$this->show();
+		$this->show();		
 	}
 	/**
 	 * 保存博客内容
@@ -66,7 +82,7 @@ class ArticleController extends CommonController{
 	 */
 	public function detailArticle($id){
 		$article = D("ArticleView")->where("article.id=".$id)->find();
-		$this -> assign("list",$article);
+		$this -> assign(array("list"=>$article,"classificationL"=>$this->classificationL));
 		$this -> show();
 	}
 	/**

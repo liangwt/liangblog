@@ -1,4 +1,4 @@
-$(function(){
+  $(function(){
 	//城市联动
 	var province = '';
 	$.each(city, function (i, k) {

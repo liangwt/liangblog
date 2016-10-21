@@ -23,6 +23,7 @@ class CommonController extends controller{
 		if(!isset($_SESSION['uid'])){
 			$this->redirect("index/index",'',3,'请登陆');
 		}
+
 	}
 }
 

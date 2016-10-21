@@ -88,6 +88,7 @@ $(function(){
 		});
 		if(title == ''){
 			toastr.warning("标题不能为空");
+            $("input[name=title]").focus();
 			return false;
 		}
     	$.ajax({
