@@ -2,8 +2,6 @@
 
 此博客采用ThinkPHP开发，使用了以下插件
 
-## 全面的WEB开发特性支持
-
 * 主题模板采用了Bootstarp 
 * 文章输入框使用了 wangEditer
 * 文件上传使用了 uploadify
