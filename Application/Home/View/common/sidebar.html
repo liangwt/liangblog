@@ -4,7 +4,9 @@
         <h4>分类</h4>
         <ol class="list-unstyled">
             <foreach name="classificationL" item="v">
-                <li><a href="#">{$v.classification}</a></li>
+                <if condition="$v.classification neq null">
+                    <li><a href="#">{$v.classification}</a>&nbsp;<span class="label label-primary">{$v.classification_num}</span></li>
+                </if>
             </foreach>
         </ol>
     </div>

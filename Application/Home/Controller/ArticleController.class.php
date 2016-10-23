@@ -11,7 +11,7 @@ class ArticleController extends CommonController{
 		parent::_initialize();
 		//获取分类列表
 		$article = D("ArticleView");
-		$this->classificationL = $article ->field("classification,count(distinct article.id)") -> where("article.uid=".$_SESSION['uid'])->group("classification")->select();
+		$this->classificationL = $article ->field("classification,count(distinct article.id) as classification_num") ->group("classification")->select();
 		$this -> assign("classificationL",$this->classificationL);
 	}
 
@@ -32,7 +32,7 @@ class ArticleController extends CommonController{
 		$this->assign('lists',$this->articleL);// 赋值数据集
 		//页码标签
 		$count = $article->where("article.uid=".$_SESSION['uid'])->count("distinct article.id");
-		$page  = new \Think\Page($count,5);
+		$page  = new \Think\Page($count,5);/**/
 		$show  = $page->show();
 
 		$this->assign("page",$show);
@@ -81,8 +81,17 @@ class ArticleController extends CommonController{
 	 * @return [type]     [description]
 	 */
 	public function detailArticle($id){
+		//文章信息
 		$article = D("ArticleView")->where("article.id=".$id)->find();
-		$this -> assign(array("list"=>$article,"classificationL"=>$this->classificationL));
+		//评论信息
+		$comment = M("comment")->where("article_id=".$id)->order("time")->select();
+/*		print_r($article);
+		print_r($comment);
+		exit();*/
+		$this -> assign([
+			"list"=>$article,
+			"classificationL"=>$this->classificationL,
+			"comment" => $comment]);
 		$this -> show();
 	}
 	/**
@@ -103,6 +112,26 @@ class ArticleController extends CommonController{
 			echo json_encode(array("status"=>0,"message"=>"添加失败"));
 		}
 
+	}
+	/**
+	 * 保存ajax提交过来的评论
+	 * @return [type] [description]
+	 */
+	public function saveComment(){
+		$comment_data = [
+			"uid" => 0,
+			"article_id" => I("post.article_id"),
+			"content" => I("post.comment_text"),
+			"time" => date("Y-m-d H:m:s"),
+			"comment_id" => 0,
+			];
+		$commentM = M("comment");
+		$result = $commentM -> add($comment_data);
+		if($result){
+			echo json_encode(["status"=>"1","message"=>$result]);
+		}else{
+			echo json_encode(["status"=>"0","message"=>"error"]);
+		}
 	}
 }
 ?>

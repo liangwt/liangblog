@@ -21,13 +21,22 @@ class ArticleViewModel extends ViewModel{
 			),
 		"classification" => array(
 			"classification",
-			"_on" => "article.classification_id=classification.id",
+			"_on"   => "article.classification_id=classification.id",
 			"_type" => "LEFT",
 			),
 		"tag" => array(
-			"name",
-			"_on" => "tag.article_id=article.id"
+			"name"  => "tag_name",
+			"_on"   => "tag.article_id=article.id",
+			"_type" => "LEFT",
 			),
+		"comment" => array(
+			"id"  => "cid",
+			"uid" => "comment_uid",
+			"article_id",
+			"content"=>"comment_content",
+			"time",
+			"comment_id",
+			"_on" => "article.id = comment.article_id"),
 		);
 
 }
