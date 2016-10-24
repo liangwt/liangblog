@@ -5,7 +5,7 @@
         <ol class="list-unstyled">
             <foreach name="classificationL" item="v">
                 <if condition="$v.classification neq null">
-                    <li><a href="#">{$v.classification}</a>&nbsp;<span class="label label-primary">{$v.classification_num}</span></li>
+                    <li><a href="#">{$v.classification}</a>&nbsp;<span class="badge">{$v.classification_num}</span></li>
                 </if>
             </foreach>
         </ol>

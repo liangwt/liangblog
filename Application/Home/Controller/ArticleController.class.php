@@ -85,8 +85,7 @@ class ArticleController extends CommonController{
 		$article = D("ArticleView")->where("article.id=".$id)->find();
 		//评论信息
 		$comment = M("comment")->where("article_id=".$id)->order("time")->select();
-/*		print_r($article);
-		print_r($comment);
+/*		print_r($comment);
 		exit();*/
 		$this -> assign([
 			"list"=>$article,

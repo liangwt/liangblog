@@ -21,7 +21,7 @@
                 <br>
                 <br>
                 <form role="form" id="comment">
-                    <legend>评论</legend>
+                    <legend>发布评论</legend>
                         <div class="form-group">
                             <label for="username">用户名</label>
                             <input type="text" class="form-control" name="username" placeholder="Enter username">
@@ -33,6 +33,20 @@
                         <input type="hidden" value="{$list.id}" name="article_id">
                         <button type="button" class="btn btn-default" id="sub_comment">Submit</button>
                 </form>
+                <br>
+                <br>
+                <br>
+                <div>
+                <legend>评论</legend>
+                    <foreach name="comment" item='c'>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Panel heading</div>
+                        <div class="panel-body">
+                            {$c.content}
+                        </div>
+                    </div>
+                </foreach>
+                </div>
             </div>
             <include file="common/sidebar"/>    
         </div>
