@@ -30,10 +30,6 @@ class ArticleController extends CommonController{
 			"edit" => $edit,
 			"article_id"=>$id,
 			]);
-/*		print_r($classification);
-		print_r($article);
-		print_r($tag);
-		exit();*/
 		$this->show();
 	}
 	/**
@@ -67,7 +63,6 @@ class ArticleController extends CommonController{
 		$article_id     = I("post.article_id");
 
 		$article = array(
-			"id"                => $article_id,
 			"title"             => $title,
 			"content"           => $content,
 			"create_time"       => date("Y-m-d H:m:s"),
@@ -75,13 +70,16 @@ class ArticleController extends CommonController{
 			"classification_id" => $classification,
 			"uid"               => $_SESSION["uid"],
 			);
-		$ArticleM = M("article");
-		//这里暂时不清楚如何使用同时插入多个标签数据 所以选择分开插入
-		if($articleM->create($article)){
-			$article_id   = $ArticleM->save($article);
-		}
+		$articleM = M("article");
+		$tagM = M("tag");
 		
-
+		if(empty($article_id)){
+			$article_id = $articleM -> add($article);
+		}else{
+			$articleM -> where("id=".$article_id)-> save($article);
+			$tagM -> where("article_id=".$article_id)-> delete();
+		}
+		//这里暂时不清楚如何使用同时插入多个标签数据 所以选择分开插入
 		foreach ($tag as $key => $value) {
 			$data = array(
 				"name" => $value,
