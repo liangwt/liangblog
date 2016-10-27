@@ -76,12 +76,17 @@ $(function(){
    		'width':'100%',
    		'delimiter': [',',';'], 
     });
+    $.each(tags,function(index,tag){
+        $("input[name=tag]").addTag(tag.name);
+    })
 
     //通过ajax提交博客信息到服务器
     $("#publish_btn").click(function(){
 		var html  = editor.$txt.html();
 		var title = $("input[name=title]").val();
 		var classification = $("select option:selected").val();
+        var edit = $("input[name=edit]").val();
+        var article_id = $("input[name=article_id]").val();
 		var tag = new Array();
 		$("span.tag > span").each(function(i,n){
 			tag[i] = $(this).text();	
@@ -100,6 +105,8 @@ $(function(){
 				"title":title,
 				"tag":tag,
 				"classification":classification,
+                "edit":edit,
+                "article_id":article_id
 			},
     		success:function(msg){ 
     			var json_data = $.parseJSON(msg);

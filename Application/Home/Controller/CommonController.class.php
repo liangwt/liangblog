@@ -3,6 +3,8 @@ namespace Home\Controller;
 use Think\Controller;
 
 class CommonController extends controller{
+	private $classificationL;
+
 	public function _initialize(){
 		$ip = get_client_ip();
 		$cookieValue = explode("|",encryption($_COOKIE['auto'],0));
@@ -23,6 +25,10 @@ class CommonController extends controller{
 		if(!isset($_SESSION['uid'])){
 			$this->redirect("index/index",'',3,'请登陆');
 		}
+
+		$article = D("ArticleView");
+		$this->classificationL = $article ->field("classification,count(distinct article.id) as classification_num") ->group("classification")->select();
+		$this -> assign("classificationL",$this->classificationL);
 
 	}
 }

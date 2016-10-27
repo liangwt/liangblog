@@ -3,6 +3,7 @@
 <script type="text/javascript">
 	var saveArticle = "{:U('Article/saveArticle')}";
 	var classUrl = "{:U('Article/saveClassification')}";
+	var tags = {$tag};//读取服务器传来的标签
 </script>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/wangEditor/css/wangEditor.min.css">
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/highlightJS/styles/atelier-cave.dark.css">
@@ -44,11 +45,11 @@
 				<div class="col-md-12 column" style="height:0px;padding-bottom:100%">
 					<div class="form-group has-feedback">
 						<label for="title">文章标题</label>
-						<input type="text" class="form-control" name="title" placeholder="文章标题">
+						<input type="text" class="form-control" name="title" placeholder="文章标题" value="{$article_info.title}">
 						<span class='glyphicon glyphicon-remove form-control-feedback' style="display: none"></span>
 					</div>
 					<div>
-						<textarea class="form-control" id="writearticle" style="height:100%;"></textarea>
+						<textarea class="form-control" id="writearticle" style="height:100%;">{$article_info.content}</textarea>
 					</div>
 					<div class="form-group">
 						<label for="classification">分类</label>
@@ -56,7 +57,11 @@
 							<select name="classification" class="form-control">
 								<option value="0" id="choose">选择分类</option>
 								<foreach name="classification" item="cla">
-									<option value="{$cla.id}">{$cla.classification}</option>
+									<if condition="$article_info.classification_id eq $cla.id">
+										<option value="{$cla.id}" selected="selected">{$cla.classification}</option>
+									<else/>
+										<option value="{$cla.id}">{$cla.classification}</option>
+									</if>
 								</foreach> 
 								<option value="add" id="add">新建分类</option>
 							</select>
@@ -66,6 +71,12 @@
 						<label for="tag">标签</label>
 						<div>
 						<input type="text" class="form-control" name="tag" placeholder="标签">
+						</div>
+					</div>
+					<div class="form-group">
+						<div>
+						<input type="hidden" class="form-control" name="edit" value="{$edit}">
+						<input type="hidden" class="form-control" name="article_id" value="{$article_id}">
 						</div>
 					</div>
 					<div class="form-group">

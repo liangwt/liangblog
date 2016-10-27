@@ -1,8 +1,10 @@
 $(function(){
+	//提交评论信息
 	$("#sub_comment").click(function(){
-		var comment_text = $("#comment_text").val();
-		var username = $("#username").val();
-
+		if($("textarea[name=comment_text]").val() == ""){
+			$("textarea[name=comment_text]").focus();
+			return false;
+		}
 		$.ajax({
 			url:commentUrl,
 			type:"POST",
@@ -17,4 +19,5 @@ $(function(){
 			}
 		})
 	})
+
 })

@@ -12,7 +12,8 @@
             <div class="col-md-9 column">
                 <div class="blog-post">
                     <h2 class="blog-post-title"><a href="{:U('Article/detailArticle')}?id={$list.id}">{$list.title}</a></h2>
-                    <p class="blog-post-meta">{$list.create_time|strtotime|date="F d",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a></p>
+                    <p class="blog-post-meta">{$list.create_time|strtotime|date="F d",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a><a class="col-md-offset-9" href="{:U('Article/writeArticle')}?id={$list.id}">编辑</a></p>
+                    <p class="blog-post-meta"></p>
                     <hr>
                     <p>{$list.content|htmlspecialchars_decode=###}</p>
                 </div>
@@ -31,20 +32,25 @@
                             <textarea class="form-control" rows="3" name="comment_text"></textarea>
                         </div>
                         <input type="hidden" value="{$list.id}" name="article_id">
-                        <button type="button" class="btn btn-default" id="sub_comment">Submit</button>
+                        <button type="button" class="btn btn-success" id="sub_comment">Submit</button>
                 </form>
                 <br>
                 <br>
                 <br>
                 <div>
-                <legend>评论</legend>
-                    <foreach name="comment" item='c'>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Panel heading</div>
-                        <div class="panel-body">
-                            {$c.content}
-                        </div>
+                <foreach name="comment" item='c'>
+                    <legend>
+                    <if condition="$c.uid eq 0">
+                        匿名用户
+                    <else/>
+                        {$c.uid}
+                    </if>
+                    </legend>
+                    <div>
+                        {$c.content}
                     </div>
+                <br>
+                <br>
                 </foreach>
                 </div>
             </div>

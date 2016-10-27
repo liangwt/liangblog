@@ -5,19 +5,31 @@ use Home\Controller\CommonController;
 class ArticleController extends CommonController{
 
 	private $articleL;
-	private $classificationL;
 
-	public function _initialize(){
-		parent::_initialize();
-		//获取分类列表
-		$article = D("ArticleView");
-		$this->classificationL = $article ->field("classification,count(distinct article.id) as classification_num") ->group("classification")->select();
-		$this -> assign("classificationL",$this->classificationL);
-	}
 
 	public function writeArticle(){
+		$id = I("get.id");
+		$articleM = M("article");
+
+		//处理编辑文章的请求
+		if(!empty($id)){
+			$article = $articleM->where("id=".$id)->find();
+			$tag = M("tag") -> where("article_id=".$id)->select();
+			$edit = true;
+		}
+		
+/*		print_r($article);
+		print_r($tag);
+		exit();*/
+		//展示分类下拉列表
 		$classification = D("classification")->select();
-		$this->assign("classification",$classification);
+		$this->assign([
+			"classification"=>$classification,
+			"article_info" => $article,
+			"tag" => json_encode($tag),
+			"edit" => $edit,
+			"article_id"=>$id,
+			]);
 		$this->show();
 	}
 	/**
@@ -32,7 +44,7 @@ class ArticleController extends CommonController{
 		$this->assign('lists',$this->articleL);// 赋值数据集
 		//页码标签
 		$count = $article->where("article.uid=".$_SESSION['uid'])->count("distinct article.id");
-		$page  = new \Think\Page($count,5);/**/
+		$page  = new \Think\Page($count,5);
 		$show  = $page->show();
 
 		$this->assign("page",$show);
@@ -47,8 +59,11 @@ class ArticleController extends CommonController{
 		$title          = I("post.title");
 		$classification = I("post.classification");
 		$tag            = I("post.tag");
+		$edit           = I("post.edit");
+		$article_id     = I("post.article_id");
 
 		$article = array(
+			"id"                => $article_id,
 			"title"             => $title,
 			"content"           => $content,
 			"create_time"       => date("Y-m-d H:m:s"),
@@ -58,7 +73,11 @@ class ArticleController extends CommonController{
 			);
 		$ArticleM = M("article");
 		//这里暂时不清楚如何使用同时插入多个标签数据 所以选择分开插入
-		$article_id   = $ArticleM->add($article);
+		if($articleM->create($article)){
+			$article_id   = $ArticleM->save($article);
+		}
+		
+
 		foreach ($tag as $key => $value) {
 			$data = array(
 				"name" => $value,
