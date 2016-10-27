@@ -30,6 +30,10 @@ class ArticleController extends CommonController{
 			"edit" => $edit,
 			"article_id"=>$id,
 			]);
+/*		print_r($classification);
+		print_r($article);
+		print_r($tag);
+		exit();*/
 		$this->show();
 	}
 	/**

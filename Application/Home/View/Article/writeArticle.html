@@ -57,11 +57,12 @@
 							<select name="classification" class="form-control">
 								<option value="0" id="choose">选择分类</option>
 								<foreach name="classification" item="cla">
-									<if condition="$article_info.classification_id eq $cla.id">
+								<!-- 此处需要使用比较 标签<eq></eq> <if></if>标签不适用 -->
+									<eq name="cla.id" value="$article_info.classification_id">
 										<option value="{$cla.id}" selected="selected">{$cla.classification}</option>
 									<else/>
 										<option value="{$cla.id}">{$cla.classification}</option>
-									</if>
+									</eq>
 								</foreach> 
 								<option value="add" id="add">新建分类</option>
 							</select>
