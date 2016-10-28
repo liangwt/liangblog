@@ -12,8 +12,20 @@
             <div class="col-md-9 column">
                 <div class="blog-post">
                     <h2 class="blog-post-title"><a href="{:U('Article/detailArticle')}?id={$list.id}">{$list.title}</a></h2>
-                    <p class="blog-post-meta">{$list.create_time|strtotime|date="F d",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a><a class="col-md-offset-9" href="{:U('Article/writeArticle')}?id={$list.id}">编辑</a></p>
-                    <p class="blog-post-meta"></p>
+
+                    <p class="blog-post-meta">{$list.create_time|strtotime|date="F d",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a>
+                    <a class="pull-right" href="{:U('Article/writeArticle')}?id={$list.id}">编辑</a>
+                    
+                    <a class="pull-right" href="{:U('Article/writeArticle')}?id={$list.id}">删除&nbsp;&nbsp;&nbsp;</a>
+                    </p>
+                    </p>
+
+                    <p class="blog-post-meta">
+                        <foreach name="tags" item="t">
+                            <span class="label">{$t.name|trim=###}</span>&nbsp;
+                        </foreach>                    
+                    </p> 
+
                     <hr>
                     <p>{$list.content|htmlspecialchars_decode=###}</p>
                 </div>

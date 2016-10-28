@@ -108,9 +108,15 @@ $(function(){
                 "edit":edit,
                 "article_id":article_id
 			},
-    		success:function(msg){ 
-    			var json_data = $.parseJSON(msg);
-    			toastr.success(json_data.message);
+    		success:function(msg){                     
+                var json_data = $.parseJSON(msg);
+                toastr.success(json_data.message);
+                
+                setTimeout(function(){
+                    window.location.href = detailArticle+"?id="+article_id;
+                },1000);
+
+
     		}
     	})
     })

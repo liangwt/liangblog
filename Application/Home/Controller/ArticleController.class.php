@@ -101,17 +101,18 @@ class ArticleController extends CommonController{
 	 * @param  int    $id 文章id
 	 * @return [type]     [description]
 	 */
-	public function detailArticle($id){
-		//文章信息
-		$article = D("ArticleView")->where("article.id=".$id)->find();
-		//评论信息
-		$comment = M("comment")->where("article_id=".$id)->order("time")->select();
-/*		print_r($comment);
+	public function detailArticle($id){	
+		$article = D("ArticleView")->where("article.id=".$id)->find();//文章信息		
+		$comment = M("comment")->where("article_id=".$id)->order("time")->select();//评论信息	
+		$tags    = M("tag") -> where("article_id=".$id) -> select();//标签信息
+/*		print_r($tags);
 		exit();*/
 		$this -> assign([
-			"list"=>$article,
-			"classificationL"=>$this->classificationL,
-			"comment" => $comment]);
+			"list"            => $article,
+			"classificationL" => $this->classificationL,
+			"comment"         => $comment,
+			"tags"           => $tags,
+			]);
 		$this -> show();
 	}
 	/**
