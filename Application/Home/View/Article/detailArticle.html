@@ -1,8 +1,12 @@
 <include file="common/header" title="文章" />
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/highlightJS/styles/atelier-cave.dark.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/SweetAlert/dist/sweetalert2.css">
+<script src="__PUBLIC__/SweetAlert/dist/sweetalert2.js"></script>
+
 <script type="text/javascript" src="__PUBLIC__/Js/detailArticle.js"></script>
 <script type="text/javascript">
     var commentUrl = "{:U('Article/saveComment')}";
+    var deleteUrl = "{:U('Article/deleteArticle')}?id={$list.id}";
 </script>
 <include file="common/nav" />
 
@@ -14,9 +18,9 @@
                     <h2 class="blog-post-title"><a href="{:U('Article/detailArticle')}?id={$list.id}">{$list.title}</a></h2>
 
                     <p class="blog-post-meta">{$list.create_time|strtotime|date="F d",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a>
-                    <a class="pull-right" href="{:U('Article/writeArticle')}?id={$list.id}">编辑</a>
+                    <a class="pull-right" href="{:U('Article/editArticle')}?id={$list.id}">编辑</a>
                     
-                    <a class="pull-right" href="{:U('Article/writeArticle')}?id={$list.id}">删除&nbsp;&nbsp;&nbsp;</a>
+                    <a class="pull-right" href="" id="deleteArticle">删除&nbsp;&nbsp;&nbsp;</a>
                     </p>
                     </p>
 

@@ -6,18 +6,7 @@ class ArticleController extends CommonController{
 
 	private $articleL;
 
-
-	public function writeArticle(){
-		$id = I("get.id");
-		$articleM = M("article");
-
-		//处理编辑文章的请求
-		if(!empty($id)){
-			$article = $articleM->where("id=".$id)->find();
-			$tag = M("tag") -> where("article_id=".$id)->select();
-			$edit = true;
-		}
-		
+	public function writeArticle(){	
 /*		print_r($article);
 		print_r($tag);
 		exit();*/
@@ -25,10 +14,6 @@ class ArticleController extends CommonController{
 		$classification = D("classification")->select();
 		$this->assign([
 			"classification"=>$classification,
-			"article_info" => $article,
-			"tag" => json_encode($tag),
-			"edit" => $edit,
-			"article_id"=>$id,
 			]);
 		$this->show();
 	}
@@ -59,8 +44,6 @@ class ArticleController extends CommonController{
 		$title          = I("post.title");
 		$classification = I("post.classification");
 		$tag            = I("post.tag");
-		$edit           = I("post.edit");
-		$article_id     = I("post.article_id");
 
 		$article = array(
 			"title"             => $title,
@@ -73,12 +56,7 @@ class ArticleController extends CommonController{
 		$articleM = M("article");
 		$tagM = M("tag");
 		
-		if(empty($article_id)){
-			$article_id = $articleM -> add($article);
-		}else{
-			$articleM -> where("id=".$article_id)-> save($article);
-			$tagM -> where("article_id=".$article_id)-> delete();
-		}
+		$article_id = $articleM -> add($article);
 		//这里暂时不清楚如何使用同时插入多个标签数据 所以选择分开插入
 		foreach ($tag as $key => $value) {
 			$data = array(
@@ -92,10 +70,46 @@ class ArticleController extends CommonController{
 			$response = array(
 				'status'  => 1,
 				'message' => $title ."已保存",
+                'article_id' => $article_id,
 				);
 			echo json_encode($response);
 		}
 	}
+    public function editArticle(){
+        $articleM = M("article");   
+        $article_id = I("get.id");
+
+        if(!empty($article_id)){
+            $article = $articleM->where("id=".$article_id)->find();
+            $tag = M("tag") -> where("article_id=".$article_id)->select();
+        }
+        $this->assign(array(
+            "article_info" => $article,
+            "tag" => json_encode($tag),
+            "edit" => $edit,
+            "article_id"=>$id,
+            ));
+        $this->writeArticle();
+/*        
+        $articleM = M("article");
+        $tagM = M("tag");
+
+        $articleM -> where("id=".$article_id)-> save($article);
+        $tagM -> where("article_id=".$article_id)-> delete();*/
+    }
+
+
+    /**
+     * 删除文章
+     * @return [json] [description]
+     */
+	public function deleteArticle(){
+		$article_id = I("get.id");
+        $articleM = M("Article");
+        $articleM ->where("id=".$article_id)-> delete();
+		echo json_encode(["status"=>1,"message"=>$article_id]);
+	}
+
 	/**
 	 * 显示单个文章内容
 	 * @param  int    $id 文章id
@@ -111,13 +125,13 @@ class ArticleController extends CommonController{
 			"list"            => $article,
 			"classificationL" => $this->classificationL,
 			"comment"         => $comment,
-			"tags"           => $tags,
+			"tags"            => $tags,
 			]);
 		$this -> show();
 	}
 	/**
 	 * 处理添加分类的ajax 
-	 * @return [type] [description]
+	 * @return [json] [description]
 	 */
 	public function saveClassification(){
 		$classM = M("classification");

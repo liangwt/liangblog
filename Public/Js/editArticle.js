@@ -1,10 +1,8 @@
 $(function(){
-
-	var editor = new wangEditor('writearticle');
+	var editor = new wangEditor('editarticle');
 	//配置表情
 	editor.config.emotions = {
     	// 支持多组表情
-
 	    // 第二组，id叫做'weibo'
 	    'weibo': {
 	        title: '微博表情',  // 组名称
@@ -19,8 +17,7 @@ $(function(){
 	editor.config.jsFilter = false;
     editor.create();
 
-
-    //文章标题不能为空
+        //文章标题不能为空
     $("input[name=title]").blur(function(){
     	if($(this).val().length==0){
 	    	$(this).siblings("span").show()
@@ -65,13 +62,19 @@ $(function(){
     	
     })
 
-    //本地多标签输入框
+   	//本地多标签输入框
     $("input[name=tag]").tagsInput({
     	'defaultText':'添加标签',
     	'height':'100px',
    		'width':'100%',
    		'delimiter': [',',';'], 
     });
+    $.each(tags,function(index,tag){
+        $("input[name=tag]").addTag(tag.name);
+    });  
+
+    
+    var article_id = $("input[name=article_id]").val();
 
     //通过ajax提交博客信息到服务器
     $("#publish_btn").click(function(){
@@ -109,4 +112,10 @@ $(function(){
     		}
     	})
     }) 
+
+
+
+
+
 })
+
