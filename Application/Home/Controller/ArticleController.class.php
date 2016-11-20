@@ -35,46 +35,11 @@ class ArticleController extends CommonController{
 		$this->assign("page",$show);
 		$this->show();		
 	}
-	/**
-	 * 保存博客内容
-	 * @return [type] [description]
-	 */
-	public function saveArticle(){
-		$content        = I("post.content");
-		$title          = I("post.title");
-		$classification = I("post.classification");
-		$tag            = I("post.tag");
 
-		$article = array(
-			"title"             => $title,
-			"content"           => $content,
-			"create_time"       => date("Y-m-d H:m:s"),
-			"last_edit_time"    => date("Y-m-d H:m:s"),
-			"classification_id" => $classification,
-			"uid"               => $_SESSION["uid"],
-			);
-		$articleM = M("article");
-		$tagM = M("tag");
-		
-		$article_id = $articleM -> add($article);
-		//这里暂时不清楚如何使用同时插入多个标签数据 所以选择分开插入
-		foreach ($tag as $key => $value) {
-			$data = array(
-				"name" => $value,
-				"article_id" => $article_id,
-				);
-			$result = M("tag") -> add($data);
-		}
-
-		if($result){
-			$response = array(
-				'status'  => 1,
-				'message' => $title ."已保存",
-                'article_id' => $article_id,
-				);
-			echo json_encode($response);
-		}
-	}
+    /**
+     * 编辑文章
+     * @return [type] [description]
+     */
     public function editArticle(){
         $articleM = M("article");   
         $article_id = I("get.id");
@@ -98,6 +63,62 @@ class ArticleController extends CommonController{
         $tagM -> where("article_id=".$article_id)-> delete();*/
     }
 
+	/**
+	 * 保存博客内容
+	 * @return [type] [description]
+	 */
+	public function saveArticle(){
+		$content        = I("post.content");
+		$title          = I("post.title");
+		$classification = I("post.classification");
+		$tag            = I("post.tag");
+        $article_id     = I("get.id");
+
+        $articleM = M("article");
+        $tagM = M("tag");
+        //处理没有id传入情况即新建一篇文章
+        if(empty($article_id)){
+            $article = array(
+                "title"             => $title,
+                "content"           => $content,
+                "create_time"       => date("Y-m-d H:m:s"),
+                "last_edit_time"    => date("Y-m-d H:m:s"),
+                "classification_id" => $classification,
+                "uid"               => $_SESSION["uid"],
+                );     
+            $article_id = $articleM -> add($article);   
+
+        }else{
+            //处理有id情况即更新一篇文章
+            $article = array(
+                "title"             => $title,
+                "content"           => $content,
+                "last_edit_time"    => date("Y-m-d H:m:s"),
+                "classification_id" => $classification,
+                "uid"               => $_SESSION["uid"],
+                );  
+            $articleM -> where(["id"=>$article_id])->save($article);
+            $tagM -> where(["article_id"=>$article_id]) -> delete();
+        }
+	
+		//这里暂时不清楚如何使用同时插入多个标签数据 所以选择分开插入
+		foreach ($tag as $key => $value) {
+			$data = array(
+				"name" => $value,
+				"article_id" => $article_id,
+				);
+			$result = M("tag") -> add($data);
+		}
+
+		if($result){
+			$response = array(
+				'status'  => 1,
+				'message' => $title ."已保存",
+                'article_id' => $article_id,
+				);
+			echo json_encode($response);
+		}
+	}
 
     /**
      * 删除文章
@@ -106,8 +127,12 @@ class ArticleController extends CommonController{
 	public function deleteArticle(){
 		$article_id = I("get.id");
         $articleM = M("Article");
-        $articleM ->where("id=".$article_id)-> delete();
-		echo json_encode(["status"=>1,"message"=>$article_id]);
+        if(!empty($article_id)){
+            $articleM ->where("id=".$article_id)-> delete();
+            echo json_encode(["status"=>1,"message"=>$article_id]);
+        }else{
+            echo json_encode(["status"=>0,"message"=>"删除失败"]);
+        }	
 	}
 
 	/**
@@ -116,18 +141,24 @@ class ArticleController extends CommonController{
 	 * @return [type]     [description]
 	 */
 	public function detailArticle($id){	
-		$article = D("ArticleView")->where("article.id=".$id)->find();//文章信息		
-		$comment = M("comment")->where("article_id=".$id)->order("time")->select();//评论信息	
-		$tags    = M("tag") -> where("article_id=".$id) -> select();//标签信息
+        if(!empty($id)){
+            $article = D("ArticleView")->where("article.id=".$id)->find();//文章信息        
+            $comment = M("comment")->where("article_id=".$id)->order("time")->select();//评论信息   
+            $tags    = M("tag") -> where("article_id=".$id) -> select();//标签信息
+            $this -> assign([
+                "list"            => $article,
+                "classificationL" => $this->classificationL,
+                "comment"         => $comment,
+                "tags"            => $tags,
+                ]);
+            $this -> show();            
+        }else{
+            E("error");
+        }
+		
 /*		print_r($tags);
 		exit();*/
-		$this -> assign([
-			"list"            => $article,
-			"classificationL" => $this->classificationL,
-			"comment"         => $comment,
-			"tags"            => $tags,
-			]);
-		$this -> show();
+
 	}
 	/**
 	 * 处理添加分类的ajax 

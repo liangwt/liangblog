@@ -2,7 +2,7 @@
 <!--引入wangEditor.css-->
 <script type="text/javascript">
 	var detailArticle = "{:U('Article/detailArticle')}"; 
-	var saveArticleUrl = "{:U('Article/saveArticle')}";
+	var saveArticleUrl = "{:U('Article/saveArticle')}?id={$article_info.id}";
 	var classUrl = "{:U('Article/saveClassification')}";
 	var tags = {$tag};//读取服务器传来的标签
 </script>

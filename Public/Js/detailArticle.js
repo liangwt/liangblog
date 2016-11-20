@@ -8,8 +8,6 @@ $(function(){
 		$(this).addClass(tagClass[index]);
 	})
 
-
-
 	$("#deleteArticle").click(function(){
         swal({
             title: 'Are you sure?',
@@ -24,13 +22,26 @@ $(function(){
                 url:deleteUrl,
                 dataType : "json",
                 success:function(msg){
-                    swal({
-                        title:'Deleted!',
-                        text:'Your file has been deleted.',
-                        type:'success'
-                    }).then(function(){
-                    location.reload();
-                    })   
+                    if(msg.status){
+                        swal({
+                            title:'Deleted!',
+                            text:'Your file has been deleted.',
+                            type:'success'
+                        }).then(function(){
+                            //跳转到页面详情
+                            window.location.href = showArticle;
+                        })                          
+                    }else{
+                        swal({
+                            title:'Failed!',
+                            text:'Your file has not been deleted.',
+                            type:'error'
+                        }).then(function(){
+                            //跳转到页面详情
+                            window.location.href = showArticle;
+                        })                         
+                    }
+ 
                 }
             });
 
