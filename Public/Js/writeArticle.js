@@ -1,8 +1,10 @@
 $(function(){
 
 	var editor = new wangEditor('writearticle');
+   //无论是哪种方式上传，你都想通过myFileName获取
+    editor.config.uploadImgFileName = 'ArticlePic'
     // 上传图片（举例）
-    editor.config.uploadImgUrl = 'Public/uploads';
+    editor.config.uploadImgUrl = uploadImgUrl;
 	//配置表情
 	editor.config.emotions = {
     	// 支持多组表情
