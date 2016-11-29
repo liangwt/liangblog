@@ -11,7 +11,7 @@ class ArticleController extends CommonController{
 		print_r($tag);
 		exit();*/
 		//展示分类下拉列表
-		$classification = D("classification")->select();
+		$classification = D("classification")->where(array("uid"=>$_SESSION['uid']))->select();
 		$this->assign([
 			"classification"=>$classification,
 			]);
@@ -166,12 +166,17 @@ class ArticleController extends CommonController{
 	 */
 	public function saveClassification(){
 		$classM = M("classification");
-		$result = $classM->where(array("classification"=>I("post.classification")))->find();
+		$result = $classM->where(array(
+				"classification"=>I("post.classification"),
+				"uid"=>$_SESSION['uid']))->find();
 		if($result){
 			echo json_encode(array("status"=>0,"message"=>"分类已存在"));
 			return false;
 		}
-		$value = $classM -> add(array("classification"=>I("post.classification")));
+		$value = $classM -> add(array(
+				"classification"=>I("post.classification"),
+				"uid"=>$_SESSION['uid'],
+				));
 		if($value){
 			echo json_encode(array("status"=>1,"message"=>$value));
 		}else{

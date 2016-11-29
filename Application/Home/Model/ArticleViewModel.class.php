@@ -21,6 +21,7 @@ class ArticleViewModel extends ViewModel{
 			),
 		"classification" => array(
 			"classification",
+			"uid" => "class_id",
 			"_on"   => "article.classification_id=classification.id",
 			"_type" => "LEFT",
 			),

@@ -3,7 +3,6 @@ namespace Home\Controller;
 use Think\Controller;
 
 class CommonController extends controller{
-	private $classificationL;
 
 	public function _initialize(){
 		$ip = get_client_ip();
@@ -27,8 +26,12 @@ class CommonController extends controller{
 		}
 
 		$article = D("ArticleView");
-		$this->classificationL = $article ->field("classification,count(distinct article.id) as classification_num") ->group("classification")->select();
-		$this -> assign("classificationL",$this->classificationL);
+		$classificationL = $article 
+						 ->field("classification,count(distinct article.id) as classification_num") 
+						 ->where(array("classification.uid"=>$_SESSION['uid']))
+						 ->group("classification")
+						 ->select();
+		$this -> assign("classificationL",$classificationL);
 
 	}
 }
