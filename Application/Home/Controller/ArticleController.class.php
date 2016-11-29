@@ -199,5 +199,33 @@ class ArticleController extends CommonController{
 			echo json_encode(["status"=>"0","message"=>"error"]);
 		}
 	}
+    /**
+     * 处理编辑和写入文章时的图片插入
+     * @return [string] [图片所在地址]
+     */
+    public function uploadPic(){
+        $config = array(
+            'maxSize'    =>    0,
+            'rootPath'   =>    'public/',
+            'savePath'   =>    'uploads/ArticlePic/',
+            'saveName'   =>    array('uniqid',''),
+            'exts'       =>    array('jpg', 'gif', 'png', 'jpeg'),
+            'autoSub'    =>    true,
+            'subName'    =>    array('date','Ymd'),
+        );
+        $upload = new \Think\Upload($config);// 实例化上传类
+        $info   =   $upload->upload();
+        if(!$info) {
+            // 上传错误提示错误信息
+            echo "error|".$upload->getError();
+        }else{
+            // 上传成功 获取上传文件信息
+            foreach ($info as $file) {
+                $path = __ROOT__."/Public/".$file["savepath"].$file['savename'];
+                echo $path;
+            }
+        }
+    }
+
 }
 ?>

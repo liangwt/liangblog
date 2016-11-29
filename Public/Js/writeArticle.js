@@ -1,6 +1,8 @@
 $(function(){
 
 	var editor = new wangEditor('writearticle');
+    // 上传图片（举例）
+    editor.config.uploadImgUrl = 'Public/uploads';
 	//配置表情
 	editor.config.emotions = {
     	// 支持多组表情

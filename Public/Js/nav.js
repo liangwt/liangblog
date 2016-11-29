@@ -2,6 +2,25 @@ $(function(){
 	$("#login").click(function () {
 
 	});
+	//轮询消息推送
+	var timestamp = 0;
+	var error = false;
+
+	function connect(){
+		$.ajax({
+			data:{"timestamp":timestamp},
+			url:MsgUrl,
+			type:"get",
+			timeout:0,
+			success:function(response){
+				var data = eval();
+				error = false;
+				timeout = data.timestamp;
+				$().append("")
+			}
+		})
+	}
+
 	//点击模态框中的注册按钮触发ajax事件
 	$("#btn_register").click(function(event){
 		var account   = $("#register_account").val();

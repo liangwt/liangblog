@@ -9,7 +9,7 @@ return array(
 	'DB_PREFIX'  => 'blog_',
 	'DB_CHARSET' => 'utf8',   
 	//调试信息
-	'SHOW_PAGE_TRACE' =>true,  
+/*	'SHOW_PAGE_TRACE' =>true,  */
 	//错误信息
 	'ERROR_PAGE' =>'/Public/404/error.html'
 );
