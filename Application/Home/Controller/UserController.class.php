@@ -14,8 +14,8 @@ class UserController extends CommonController{
 	public function uploadify(){
 		$config = array(
 	    'maxSize'    =>    0,
-	    'rootPath'   =>    'public/uploads/',
-	    'savePath'   =>    'face/',
+	    'rootPath'   =>    'Public/',
+	    'savePath'   =>    'uploads/face/',
 	    'saveName'   =>    array('uniqid',''),
 	    'exts'       =>    array('jpg', 'gif', 'png', 'jpeg'),
 	    'autoSub'    =>    true,
@@ -30,10 +30,10 @@ class UserController extends CommonController{
     		);
 		}else{// 上传成功 获取上传文件信息
 			foreach ($info as $file) {
-				$path = "public/uploads/".$file["savepath"].$file['savename'];
-				$savepath = str_replace("face", "littleface", $file["savepath"]);
+				$path = "Public/".$file["savepath"].$file['savename'];
+				$newPath = str_replace("face", "littleface", $file["savepath"]);
 				//构造一个新的路径存放缩略图
-				$newPath = "public/uploads/".$savepath;
+				$newPath = "Public/".$newPath;
 				if(!is_dir($newPath)){
 					mkdir($newPath);
 				}
@@ -46,6 +46,8 @@ class UserController extends CommonController{
 				$response = array(
 					'status' => 1,
 					"message" => $newPath,
+					"old" => $path,
+					"newPath1" => $newPath1
 				);
 			}
     	}
