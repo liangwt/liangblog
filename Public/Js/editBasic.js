@@ -31,7 +31,6 @@
         		$("#afterFace").attr("src",ROOT+json_data.message).parent().show("slow");
         		$("#faceAdress").val(ROOT+json_data.message);
         	}
-
         }
 	});
 

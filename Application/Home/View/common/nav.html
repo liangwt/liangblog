@@ -75,17 +75,17 @@
 </div>
 
 <!--nav -->
-<div class="navbar navbar-default navbar-fixed-top">
+<div class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="{:U('Index/index')}">liangblog</a>
         </div>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" aria-expanded="false" style="height:1px">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" aria-expanded="false">
             <ul class="nav navbar-nav">
                 <li><a href="{:U('Article/showArticle')}">博客</a></li>
                 <li><a href="{:U('resume/resume')}">简历</a></li>
-                <li><a href="about">关于</a></li>
+                <li><a href="{:U('About/about')}">关于</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <if condition="!isset($_SESSION['uid'])">
@@ -95,22 +95,22 @@
                     <li><p class="navbar-text">{$Think.session.username}</p></li>
                     <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">个人中心<strong class="caret"></strong></a>
-                    <ul class="dropdown-menu">
-                    <li>
-                    <a href="{:U('Article/writeArticle')}">发布博客</a>
-                    </li>
-                    <li>
-                    <a href="{:U('user/editBasic')}">修改个人信息</a>
-                    </li>
-                    <li>
-                    <a href="#">消息中心</a>
-                    </li>
-                    <li class="divider">
-                    </li>
-                    <li>
-                    <a id="logout" href="#">退出登录</a>
-                    </li>
-                    </ul>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a href="{:U('Article/writeArticle')}">发布博客</a>
+                        </li>
+                        <li>
+                          <a href="{:U('user/editBasic')}">修改个人信息</a>
+                        </li>
+                        <li>
+                          <a href="#">消息中心</a>
+                        </li>
+                        <li class="divider">
+                        </li>
+                        <li>
+                          <a id="logout" href="#">退出登录</a>
+                        </li>
+                      </ul>
                     </li>  
                 </if>
             </ul>

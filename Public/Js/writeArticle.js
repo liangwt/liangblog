@@ -17,7 +17,7 @@ $(function(){
 	    // 下面还可以继续，第三组、第四组、、、
 	};
 	//配置吸顶距离
-	editor.config.menuFixed = 70;
+	editor.config.menuFixed = 0;
 	// 插入代码时的默认语言
 	editor.config.codeDefaultLang = 'php'
 	editor.config.jsFilter = false;

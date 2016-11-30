@@ -35,7 +35,7 @@ class UserController extends CommonController{
 				//构造一个新的路径存放缩略图
 				$newPath = "Public/".$newPath;
 				if(!is_dir($newPath)){
-					mkdir($newPath);
+					mkdir($newPath,077);
 				}
 				$newPath .= $file['savename'];
 

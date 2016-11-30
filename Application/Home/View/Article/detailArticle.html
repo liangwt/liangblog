@@ -55,19 +55,30 @@
                 <br>
                 <br>
                 <div>
+
                 <foreach name="comment" item='c'>
-                    <legend>
+                <div class="panel panel-success">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">
                     <if condition="$c.uid eq 0">
                         匿名用户
                     <else/>
                         {$c.uid}
                     </if>
-                    </legend>
-                    <div>
-                        {$c.content}
+                    <div class="pull-right">
+                        <span class="glyphicon glyphicon-thumbs-up"></span>100&nbsp;
                     </div>
-                <br>
-                <br>
+                    <div class="pull-right">
+                        <span class="glyphicon glyphicon-thumbs-down"></span>100&nbsp;
+                    </div>
+                    
+                    
+                    </h3>
+                  </div>
+                  <div class="panel-body">
+                     {$c.content}
+                  </div>
+                </div>
                 </foreach>
                 </div>
             </div>
