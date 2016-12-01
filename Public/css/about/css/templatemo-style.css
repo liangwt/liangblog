@@ -321,7 +321,13 @@ a:focus {
 }
 
 .tm-social-icons-container { margin-bottom: 50px; }
-.tm-copyright-text { margin-bottom: 0; }
+.tm-copyright-text { 
+	margin-bottom: 0;
+	font-size: 19px;
+	font-weight: 300;
+
+}
+.text-xs-center{text-align:center!important}
 .tm-slide-content-div { padding: 30px; }
 
 @media only screen and (min-width: 350px) {

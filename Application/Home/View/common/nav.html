@@ -4,11 +4,41 @@
   var logouturl = "{:U('login/logout')}";
 </script>
 <script type="text/javascript" src="__PUBLIC__/Js/nav.js"></script>
+<style type="text/css">
+.actGotop{
+    position:fixed; 
+    _position:absolute; 
+    bottom:10px; 
+    right:90px; 
+    display:none;
+}
+#Top{
+    width:70px; 
+    height:61px; 
+}
+.top_text{
+  text-align: center;
+}
+</style>
+<script type="text/javascript">
+$(function(){ 
+  $(window).scroll(function() {   
+    if($(window).scrollTop() >= 100){
+      $('.actGotop').fadeIn(300); 
+    }else{    
+      $('.actGotop').fadeOut(300);    
+    }  
+  });
+  $('.actGotop').click(function(){$('html,body').animate({scrollTop: '0px'}, 800);}); 
+});
+</script>
 
 </head>
 <!--login model -->
 
 <body>
+
+<div class="actGotop"><image src="__PUBLIC__/image/nav/up.png" id="Top"><p class="top_text">返回顶部</p></image></div>
 
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -76,12 +106,12 @@
 
 <!--nav -->
 <div class="navbar navbar-default">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="{:U('Index/index')}">liangblog</a>
         </div>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" aria-expanded="false">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="{:U('Article/showArticle')}">博客</a></li>
                 <li><a href="{:U('resume/resume')}">简历</a></li>
@@ -92,10 +122,12 @@
                     <li><a href="#" data-toggle="modal" data-target="#register">注册</a></li>
                     <li><a href="#" data-toggle="modal" data-target="#login">登陆</a></li>
                 <else/>
-                    <li><p class="navbar-text">{$Think.session.username}</p></li>
+
+                    <p class="navbar-text">{$Think.session.username}</p>
+
                     <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">个人中心<strong class="caret"></strong></a>
-                      <ul class="dropdown-menu">
+                      <ul class="dropdown-menu" role="menu">
                         <li>
                           <a href="{:U('Article/writeArticle')}">发布博客</a>
                         </li>
@@ -117,6 +149,8 @@
         </div>  
     </div>    
 </div>
+
+
 
 
 
