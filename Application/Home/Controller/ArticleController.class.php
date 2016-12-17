@@ -143,7 +143,7 @@ class ArticleController extends CommonController{
 	public function detailArticle($id){	
         if(!empty($id)){
             $article = D("ArticleView")->where("article.id=".$id)->find();//文章信息        
-            $comment = M("comment")->where("article_id=".$id)->order("time")->select();//评论信息   
+            $comment = $this->showComment($id);   
             $tags    = M("tag") -> where("article_id=".$id) -> select();//标签信息
             $this -> assign([
                 "list"            => $article,
@@ -159,6 +159,29 @@ class ArticleController extends CommonController{
 /*		print_r($tags);
 		exit();*/
 
+	}
+	/**
+	 * 读取评论，通过读取根评论来获得跟评论下面的所有评论
+	 * @param  integer $articleId   文章id
+	 * @return array   $rootComment 评论数组
+	 */
+	public function showComment($articleId=0){
+		$commentWhere = array(
+			"article_id" => $articleId,
+			"comment_pid" => 0,
+			);
+		$rootComment = M("comment")->where($commentWhere)->order("time")->select();//根评论信息
+		foreach ($rootComment as $key => $value) {
+			$commentWhere = array(
+				"article_id" => $articleId,
+				"comment_rid" => $value["id"],
+				);
+			//获得二级评论，键值为根评论
+			$rootComment[$key]["secondComment"] = M("comment")->where($commentWhere)->order("time")->select();
+		}
+		return $rootComment;
+/*		print_r($rootComment); 
+		print_r($secondComment);*/
 	}
 	/**
 	 * 处理添加分类的ajax 

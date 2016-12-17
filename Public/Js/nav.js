@@ -21,6 +21,13 @@ $(function(){
 		})
 	}
 
+	//点击图片切换验证码
+	$("#verifyCode").click(function(){
+		var codeSrc = $(this).attr("src");
+		var picURL = codeSrc.split("?")[0];
+		$(this).attr("src",picURL+"?"+Math.random());
+	})
+
 	//点击模态框中的注册按钮触发ajax事件
 	$("#btn_register").click(function(event){
 		var account   = $("#register_account").val();
@@ -70,11 +77,12 @@ $(function(){
    		var account   = $("#login_account").val();
 		var password  = $("#login_password").val();
 		var auto = $("input[name='auto']:checked").val();
+		var verify_code = $("#login_code").val();
 
 		$.ajax({
 			type: "POST",
-			url: loginurl,
-			data: {"account":account,"password":password,"auto":auto},
+			url: loginurl, 
+			data: {"account":account,"password":password,"auto":auto,"varify_code":verify_code},
 			datatype:"json",
 			success: function(msg){
 				var json_data = $.parseJSON( msg );

@@ -22,7 +22,7 @@ $(function(){
 	editor.config.jsFilter = false;
     editor.create();
 
-        //文章标题不能为空
+    //文章标题不能为空
     $("input[name=title]").blur(function(){
     	if($(this).val().length==0){
 	    	$(this).siblings("span").show()

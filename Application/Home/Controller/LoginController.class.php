@@ -63,6 +63,7 @@ class LoginController extends Controller{
 		$account   = I("post.account");
 		$password  = I("post.password");
 		$auto = I("post.auto");
+		$varify_code = I("post.varify_code");
 
 		//验证账号是否存在
 		$existAccount = array('account'=>$account);
@@ -85,6 +86,15 @@ class LoginController extends Controller{
 			echo json_encode($responseJsData);
 			return false;
 		}
+        //验证验证码
+        $verify = new \Think\Verify();
+    	$result['varify_code'] = $verify->check($varify_code);
+		if(!$result['varify_code']){
+            $responseJsData['status'] = 0;
+            $responseJsData['message'] = '验证码错误';
+            echo json_encode($responseJsData);
+            return false;            
+        }
 		//
 		$_SESSION['uid'] = $result['id'];
 		$_SESSION['username'] = $account;
@@ -107,6 +117,11 @@ class LoginController extends Controller{
 		$responseJsData['status']  = 1;
 		$responseJsData['message'] = '退出登录';
 		echo json_encode($responseJsData);
+	}
+	//生成验证码的地址
+	function verifyCode(){
+		$Verify = new \Think\Verify();
+		$Verify->entry();
 	}
 
 }

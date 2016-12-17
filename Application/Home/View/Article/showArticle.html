@@ -1,27 +1,55 @@
-<include file="common/header" title="首页"/>
+<include file="common/header" title="文章列表"/>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/highlightJS\styles\atelier-cave.dark.css">
+<script type="text/javascript" src="__PUBLIC__/Js/showArticle/readmore.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/showArticle/showArticle.js"></script>
 <include file="common/nav"/>
 
-<div class="container">
-    <div class="page-header" id="banner">
+    <!-- Page Content -->
+    <div class="container">
+
         <div class="row">
-            <div class="col-md-9 column">
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-9 showArticle">
                 <foreach name="lists" item="list">
-                    <div class="blog-post">
-                        <h2 class="blog-post-title"><a href="{:U('Article/detailArticle')}?id={$list.id}">{$list.title}</a></h2>
-                        <p class="blog-post-meta">{$list.create_time|strtotime|date="F d",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a></p>
-                        <p>{$list.content|htmlspecialchars_decode=###}</p>
-                    </div>    
+                <!-- First Blog Post -->
+                    <h2>
+                        <a href="{:U('Article/detailArticle')}?id={$list.id}">{$list.title}</a>
+                    </h2>
+                    <p><span class="glyphicon glyphicon-time"></span>{$list.create_time|strtotime|date="F d,Y  ",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a></p>
+                    <hr>
+                    <article>
+                    <p class="showArticle_article">{$list.content|htmlspecialchars_decode=###}</p>
+                    </article>
+                    <hr>  
                 </foreach>
-                <!-- /.blog-post -->  
+
+                <!-- Pager -->
                 <nav>
                 {$page}
                 </nav>
+
             </div>
-            <!-- /.blog-main -->
+
             <include file="common/sidebar"/>
+
         </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </footer>
+
     </div>
-</div>
+    <!-- /.container -->
 </body>
 </html>

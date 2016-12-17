@@ -24,7 +24,7 @@
 						V {$version.version}
 					</h3>
 					<p class="tm-media-description tm-gray-text-2">
-						{$version.content}
+						{$version.content|htmlspecialchars_decode=###}
 					</p>    
 				</div>                    
 			</div>

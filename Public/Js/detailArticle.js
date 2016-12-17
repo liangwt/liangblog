@@ -7,7 +7,7 @@ $(function(){
 		var index = Math.floor(Math.random()*tagClass.length);
 		$(this).addClass(tagClass[index]);
 	})
-
+    //删除文章弹出框
 	$("#deleteArticle").click(function(){
         swal({
             title: 'Are you sure?',
@@ -68,5 +68,14 @@ $(function(){
 			}
 		})
 	})
+    //顶评论ajax处理
+    $("#up-comment").click(function(){
+        $.ajax({
+            url:upCommentUrl,
+            type:"POST",
+            
+        })
+    })
+    //踩评论ajax处理
 
 })

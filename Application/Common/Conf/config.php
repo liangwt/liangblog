@@ -17,5 +17,8 @@ return array(
 	//调试信息
 /*	'SHOW_PAGE_TRACE' =>true,  */
 	//错误信息
-	'ERROR_PAGE' =>__ROOT__.'/Public/404/error.html'
+	'ERROR_PAGE' =>__ROOT__.'/Public/404/error.html',
+	'DB_FIELD_CACHE'=>false,
+	'HTML_CACHE_ON'=>false,
+	'HTML_CACHE_TIME' => 1, 
 );

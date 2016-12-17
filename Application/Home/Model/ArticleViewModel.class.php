@@ -36,7 +36,8 @@ class ArticleViewModel extends ViewModel{
 			"article_id",
 			"content"=>"comment_content",
 			"time",
-			"comment_id",
+			"comment_pid",
+			"comment_rid",
 			"_on" => "article.id = comment.article_id"),
 		);
 
