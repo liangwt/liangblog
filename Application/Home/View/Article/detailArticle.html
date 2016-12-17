@@ -11,10 +11,10 @@
 </script>
 <include file="common/nav" />
 
+
 <div class="container">
-    <div class="page-header" id="banner">
         <div class="row">
-            <div class="col-md-9 column">
+            <div class="col-md-10 col-md-offset-1">
                 <div class="blog-post">
                     <h2 class="blog-post-title"><a href="{:U('Article/detailArticle')}?id={$list.id}">{$list.title}</a></h2>
 
@@ -56,33 +56,59 @@
                 <br>
                 <div>
 
+
+
+
+                <!-- Comment -->
                 <foreach name="comment" item='c'>
-                <div class="panel panel-success">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">
-                    <if condition="$c.uid eq 0">
-                        匿名用户
-                    <else/>
-                        {$c.uid}
-                    </if>
-                    <div class="pull-right">
-                        <span class="glyphicon glyphicon-thumbs-up"></span>100&nbsp;
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" src="http://placehold.it/64x64" alt="" style="width: 50px;height: 50px;border-radius:50%">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">                    
+                            <if condition="$c.uid eq 0">
+                                匿名用户
+                            <else/>
+                                {$c.uid}
+                            </if>
+                            <small>August 25, 2014 at 9:30 PM</small>
+                        </h4>
+                        <input type="hidden" name="commentId" value={c.id}>
+                        {$c.content}
+                        <br/>
+                        <div>
+                            <span class="glyphicon glyphicon-chevron-up"></span> 100&nbsp;|
+                            <span class="glyphicon glyphicon-chevron-down"></span> 100&nbsp;|
+                            <span class="glyphicon glyphicon-edit"></span> 回复      
+                        </div>
+                        
+                        <foreach name="c.secondComment" item="s">
+                        <!-- Nested Comment -->
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img class="media-object" src="http://placehold.it/64x64" alt="" style="width: 50px;height: 50px;border-radius:50%">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <if condition="$s.uid eq 0">
+                                        匿名用户
+                                    <else/>
+                                        {$s.uid}
+                                    </if><small>回复了</small>{$s.comment_pid}
+                                    <small>August 25, 2014 at 9:30 PM</small>
+                                </h4>
+                                <input type="hidden" name="commentId" value={c.id}>
+                                {$s.content}
+                            </div>
+                        </div>
+                        <!-- End Nested Comment -->
+                        </foreach>
                     </div>
-                    <div class="pull-right">
-                        <span class="glyphicon glyphicon-thumbs-down"></span>100&nbsp;
-                    </div>
-                    
-                    
-                    </h3>
-                  </div>
-                  <div class="panel-body">
-                     {$c.content}
-                  </div>
                 </div>
                 </foreach>
                 </div>
             </div>
-            <include file="common/sidebar"/>    
         </div>
     </div>
 </div>
