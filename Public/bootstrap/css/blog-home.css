@@ -10,7 +10,14 @@ body {
 }
 
 footer {
-    margin: 50px 0;
+    margin: 50px 0 0 0;
+}
+.copyright{
+    color:#6a6a6a;
+}
+.copyright:hover{
+    color:#6a6a6a;
+    text-decoration: none;
 }
 .well{
 	min-height:20px;
@@ -39,4 +46,7 @@ footer {
     font-size: 18px;
     line-height: 20px;
     line-height: 20px;
+}
+.showArticle_article{
+    color: #6a6a6a;
 }

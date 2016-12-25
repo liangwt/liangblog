@@ -31,6 +31,8 @@ class ArticleController extends CommonController{
 		$count = $article->where("article.uid=".$_SESSION['uid'])->count("distinct article.id");
 		$page  = new \Think\Page($count,5);
 		$show  = $page->show();
+		/*print_r($show);
+		exit();*/
 
 		$this->assign("page",$show);
 		$this->show();		
@@ -254,6 +256,7 @@ class ArticleController extends CommonController{
             }
         }
     }
+
 
 }
 ?>

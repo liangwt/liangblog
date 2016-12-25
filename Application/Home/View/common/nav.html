@@ -2,43 +2,17 @@
   var registerurl = "{:U('login/register')}";
   var loginurl = "{:U('login/login')}";
   var logouturl = "{:U('login/logout')}";
+  var goup = "__PUBLIC__/image/nav/up.png";
 </script>
 <script type="text/javascript" src="__PUBLIC__/Js/nav.js"></script>
-<style type="text/css">
-.actGotop{
-    position:fixed; 
-    _position:absolute; 
-    bottom:10px; 
-    right:90px; 
-    display:none;
-}
-#Top{
-    width:70px; 
-    height:61px; 
-}
-.top_text{
-  text-align: center;
-}
-</style>
-<script type="text/javascript">
-$(function(){ 
-  $(window).scroll(function() {   
-    if($(window).scrollTop() >= 100){
-      $('.actGotop').fadeIn(300); 
-    }else{    
-      $('.actGotop').fadeOut(300);    
-    }  
-  });
-  $('.actGotop').click(function(){$('html,body').animate({scrollTop: '0px'}, 800);}); 
-});
-</script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/goup/goup.css">
 
 </head>
 <!--login model -->
 
 <body>
 
-<div class="actGotop"><image src="__PUBLIC__/image/nav/up.png" id="Top"><p class="top_text">返回顶部</p></image></div>
+<div class="actGotop"><image src="__PUBLIC__/image/nav/up.png" id="Top"></image></div>
 
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">

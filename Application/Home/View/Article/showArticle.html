@@ -2,6 +2,7 @@
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/highlightJS\styles\atelier-cave.dark.css">
 <script type="text/javascript" src="__PUBLIC__/Js/showArticle/readmore.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Js/showArticle/showArticle.js"></script>
+<script type="text/javascript" src="__PUBLIC__/goup/goup.js"></script>
 <include file="common/nav"/>
 
     <!-- Page Content -->
@@ -15,40 +16,27 @@
                 <!-- First Blog Post -->
                     <h2>
                         <a href="{:U('Article/detailArticle')}?id={$list.id}">{$list.title}</a>
-                    </h2>
-                    <p><span class="glyphicon glyphicon-time"></span>{$list.create_time|strtotime|date="F d,Y  ",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a></p>
-                    <hr>
-                    <article>
-                    <p class="showArticle_article">{$list.content|htmlspecialchars_decode=###}</p>
-                    </article>
-                    <hr>  
+                </h2>
+                <p><span class="glyphicon glyphicon-time"></span>{$list.create_time|strtotime|date="F d,Y  ",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a></p>
+                <article>
+                    <p class="showArticle_article">{$list.content|htmlspecialchars_decode|strip_tags}</p>
+                </article>
+                <hr>
                 </foreach>
-
-                <!-- Pager -->
-                <nav>
-                {$page}
-                </nav>
-
             </div>
-
+            <!-- Pager -->
             <include file="common/sidebar"/>
-
         </div>
         <!-- /.row -->
+        <div class="row">
 
-        <hr>
+                <nav>
+                    <ul class="pagination">
+                        {$page}
+                    </ul>
+                </nav>
 
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-        </footer>
-
+        </div>
     </div>
     <!-- /.container -->
 </body>

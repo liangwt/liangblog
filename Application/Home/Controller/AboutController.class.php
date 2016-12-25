@@ -13,6 +13,8 @@ class AboutController extends Controller{
 		exit();*/
 		$this->show();
 	}
+
+
 }
 
 ?>

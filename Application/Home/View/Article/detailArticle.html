@@ -2,6 +2,7 @@
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/highlightJS/styles/atelier-cave.dark.css">
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/SweetAlert/dist/sweetalert2.css">
 <script src="__PUBLIC__/SweetAlert/dist/sweetalert2.js"></script>
+<script type="text/javascript" src="__PUBLIC__/goup/goup.js"></script>
 
 <script type="text/javascript" src="__PUBLIC__/Js/detailArticle.js"></script>
 <script type="text/javascript">
@@ -22,7 +23,6 @@
                     <a class="pull-right" href="{:U('Article/editArticle')}?id={$list.id}">编辑</a>
                     
                     <a class="pull-right" href="" id="deleteArticle">删除&nbsp;&nbsp;&nbsp;</a>
-                    </p>
                     </p>
 
                     <p class="blog-post-meta">
@@ -54,12 +54,8 @@
                 <br>
                 <br>
                 <br>
-                <div>
-
-
-
-
                 <!-- Comment -->
+                <div>
                 <foreach name="comment" item='c'>
                 <div class="media">
                     <a class="pull-left" href="#">
@@ -78,8 +74,8 @@
                         {$c.content}
                         <br/>
                         <div>
-                            <span class="glyphicon glyphicon-chevron-up"></span> 100&nbsp;|
-                            <span class="glyphicon glyphicon-chevron-down"></span> 100&nbsp;|
+                            <span class="glyphicon glyphicon-chevron-up" style="cursor:pointer;"></span> 100&nbsp;|
+                            <span class="glyphicon glyphicon-chevron-down"style="cursor:pointer;"></span> 100&nbsp;|
                             <span class="glyphicon glyphicon-edit"></span> 回复      
                         </div>
                         
@@ -110,6 +106,7 @@
                 </div>
             </div>
         </div>
+        <include file="common/footer"/>
     </div>
 </div>
 </body>
