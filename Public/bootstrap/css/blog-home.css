@@ -6,9 +6,30 @@
 
 body {
     padding-top: 0px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-    background-color: #f5f5f5;
+    background-color: rgb(244,244,244);
+    font-family: Arial,"Microsoft YaHei", "Helvetica Neue", Helvetica, sans-serif;
 }
-
+.navbar {
+    border-radius: 0px;
+}
+.dropdown-menu{
+    background-color: #222;
+}
+.dropdown-menu>li>a{
+    color: #9d9d9d;
+}
+.dropdown-menu>li>a:hover{
+    color: #fff;
+    background-color: transparent;
+}
+/*去除轮播时的阴影*/
+.carousel-control.left{
+     background-image:none;
+}
+.carousel-control.right{
+    background-image:none;
+}
+/*底部商标*/
 footer {
     margin: 50px 0 0 0;
 }

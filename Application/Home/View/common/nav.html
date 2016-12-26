@@ -89,14 +89,14 @@
 <div class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{:U('Index/index')}">liangblog</a>
+            <a class="navbar-brand" href="{:U('Home/Index/index')}">liangblog</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="{:U('Article/showArticle')}">博客</a></li>
-                <li><a href="{:U('resume/resume')}">简历</a></li>
-                <li><a href="{:U('About/about')}">关于</a></li>
+                <li><a href="{:U('Home/Article/showArticle')}">博客</a></li>
+                <li><a href="http://resume.qmail.com/liang.w.t/351hjrDgthw">简历</a></li>
+                <li><a href="{:U('Home/About/about')}">关于</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <if condition="!isset($_SESSION['uid'])">
