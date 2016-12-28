@@ -102,13 +102,6 @@ a:focus {
 	margin-bottom: 1rem; 
 }
 
-.form-control { 
-	border: 1px solid #6A6A6A;
-	border-radius: 10px;
-	font-size: 1.3rem;
-	padding: 0.9rem; 
-}
-
 .tm-max-w-400 { max-width: 400px; }
 
 .form-control::-webkit-input-placeholder {
