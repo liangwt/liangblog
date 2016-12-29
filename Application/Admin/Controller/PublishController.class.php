@@ -18,11 +18,16 @@ class PublishController extends Controller{
         $this->show();
     }
     public function post(){
-        $versionM = M('version');
+        $versionM = M('about');
         $postData = array(
-            $version = I("post.version"),
+            "title" => I("POST.content"),
+            "version" => I("POST.version"),
+            "content" => I("POST.content"),
+            "modify_time" => I("POST.PubDate"),
+            "create_by" => "liangwt",
 
         );
+        $versionM -> add($postData);
     }
 
 }

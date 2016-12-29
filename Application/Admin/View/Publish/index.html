@@ -1,8 +1,13 @@
 <include file="Home@common:header"/>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/wangEditor/css/wangEditor.min.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/datetimepicker/bootstrap-datetimepicker.css">
 <script src="__PUBLIC__/wangEditor/js/wangEditor.js"></script>
+<script type="text/javascript" src="__PUBLIC__/datetimepicker/Moment.js"></script>
+<script type="text/javascript" src="__PUBLIC__/datetimepicker/moment-with-locales.js"></script>
+<script type="text/javascript" src="__PUBLIC__/datetimepicker/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript">
     $(function(){
+        //多功能编辑框
         var editor = new wangEditor('content');
         editor.config.menus = [
             'bold',
@@ -21,6 +26,10 @@
             'fullscreen'
         ];
         editor.create();
+        //时间选择器
+        $("#PubDate").datetimepicker({
+            format:"YYYY/MM/DD"
+        });
     })
 </script>
 <include file="Home@common:nav"/>
@@ -34,23 +43,23 @@
     </div>
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
-            <form class="form-horizontal" role="form" action="{:U('Admin/Publish/post')}">
+            <form class="form-horizontal" role="form" action="{:U('Admin/Publish/post')}" method="POST">
                 <div class="form-group">
                     <label for="version" class="col-sm-2 control-label">version</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="version" placeholder="version">
+                        <input type="text" class="form-control" id="version" name="version" placeholder="version">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="PubDate" class="col-sm-2 control-label">Date</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="PubDate" placeholder="PubDate">
+                        <input type="text" class="form-control" id="PubDate" name="PubDate" placeholder="PubDate">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="content" class="col-sm-2 control-label">content</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" rows="8" id="content"></textarea>
+                        <textarea class="form-control" rows="8" id="content" name="content"></textarea>
                     </div>
                 </div>
                 <div class="form-group">

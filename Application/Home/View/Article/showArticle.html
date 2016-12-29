@@ -19,7 +19,7 @@
                 </h2>
                 <p><span class="glyphicon glyphicon-time"></span>{$list.create_time|strtotime|date="F d,Y  ",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a></p>
                 <article>
-                    <p class="showArticle_article">{$list.content|htmlspecialchars_decode|strip_tags}</p>
+                    <p class="showArticle_article">{$list.content|htmlspecialchars_decode|strip_tags|mb_substr=###,0,600}</p>
                 </article>
                 <hr>
                 </foreach>

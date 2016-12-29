@@ -15,6 +15,7 @@ function encryption($str,$flag=1){
 	return $str;
 }
 
+
 /*
 测试程序
 echo $str = encryption("127.0.0.1|1");

@@ -22,7 +22,7 @@ class CommonController extends controller{
 			}
 		}
 		if(!isset($_SESSION['uid'])){
-			$this->redirect("index/index",'',3,'请登陆');
+			$this->redirect("Admin/login/index",'',3);
 		}
 
 		$article = D("ArticleView");
@@ -34,6 +34,7 @@ class CommonController extends controller{
 		$this -> assign("classificationL",$classificationL);
 
 	}
+
 }
 
 
