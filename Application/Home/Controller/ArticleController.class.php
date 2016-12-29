@@ -167,7 +167,7 @@ class ArticleController extends CommonController{
 	 * @param  integer $articleId   文章id
 	 * @return array   $rootComment 评论数组
 	 */
-	public function showComment($articleId=0){
+	private function showComment($articleId=0){
 		$commentWhere = array(
 			"article_id" => $articleId,
 			"comment_pid" => 0,

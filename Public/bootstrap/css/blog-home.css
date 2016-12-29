@@ -12,7 +12,7 @@ body {
 .navbar {
     border-radius: 0px;
 }
-.dropdown-menu{
+ul.dropdown-menu{
     background-color: #222;
 }
 .dropdown-menu>li>a{

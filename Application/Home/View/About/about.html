@@ -1,28 +1,36 @@
 <include file="common/header" title="关于"/>
-<link rel="stylesheet" href="__PUBLIC__/css/about/css/templatemo-style.css">
 <script type="text/javascript" src="__PUBLIC__/JS/about/about.js"></script>
+<style>
+	.media-left, .media>.pull-left {
+		padding-right: 20px;
+	}
+	.media-heading{
+		position: relative;
+		right: -20px;
+	}
+
+</style>
 <include file="common/nav"/>
 <div class="container">
-  	<div class="page-header version" id="banner">
-
-  	<foreach name="versionL" item="version">
-  		<div class="row tm-media-row">
-			<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" id="icon">
-			<span class="glyphicon glyphicon-calendar"></span>&nbsp;{$version.modify_time}
-			</div>
-			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8" id="vcontent">
-				<div class="tm-media-text-container">
-					<h3 class="tm-media-title tm-gray-text">
-						V {$version.version}
-					</h3>
-					<p class="tm-media-description tm-gray-text-2">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-3">
+			<foreach name="versionL" item="version">
+				<div class="media">
+					<div class="media-left media-middle">
+						<span class="glyphicon glyphicon-calendar"></span>
+					</div>
+					<div class="media-left media-middle">
+						&nbsp;{$version.modify_time}
+					</div>
+					<div class="media-body">
+						<h3 class="media-heading">V {$version.version}</h3>
 						{$version.content|htmlspecialchars_decode=###}
-					</p>
+					</div>
 				</div>
-			</div>
+				<hr/>
+			</foreach>
 		</div>
-	</foreach>
-
+		<include file="Home@common/footer"/>
 	</div>
 </div>
 </body>

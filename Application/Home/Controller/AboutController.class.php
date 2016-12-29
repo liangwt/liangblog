@@ -5,7 +5,7 @@ use Think\Controller;
 class AboutController extends Controller{
 	function about(){
 		$aboutM = D("about");
-		$versionL = $aboutM -> select();
+		$versionL = $aboutM -> order("modify_time desc") -> select();
 		$this->assign(array(
 			"versionL" => $versionL,
 			));
