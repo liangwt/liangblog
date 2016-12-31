@@ -1,0 +1,109 @@
+<include file="common/header" title="文章" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/highlightJS/styles/atelier-cave.dark.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/SweetAlert/dist/sweetalert2.css">
+<script src="__PUBLIC__/SweetAlert/dist/sweetalert2.js"></script>
+<script type="text/javascript" src="__PUBLIC__/goup/goup.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/Js/detailArticle.js"></script>
+<script type="text/javascript">
+    var showArticle = "{:U('Article/showArticle')}"; 
+    var commentUrl = "{:U('Article/saveComment')}";
+    var deleteUrl = "{:U('Article/deleteArticle')}?id={$list.id}";
+</script>
+<include file="common/nav" />
+
+
+<div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="blog-post">
+                    <h2 class="blog-post-title"><a href="{:U('Article/detailArticle')}?id={$list.id}">{$list.title}</a></h2>
+
+                    <p class="blog-post-meta">{$list.create_time|strtotime|date="F d",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a>
+                    </p>
+
+                    <p class="blog-post-meta">
+                        <foreach name="tags" item="t">
+                            <span class="label">{$t.name|trim=###}</span>&nbsp;
+                        </foreach>                    
+                    </p> 
+
+                    <hr>
+                    <p>{$list.content|htmlspecialchars_decode=###}</p>
+                </div>
+                <!--commoentInput-->
+                <br>
+                <br>
+                <br>
+                <form role="form" id="comment">
+                    <legend>发布评论</legend>
+                        <div class="form-group">
+                            <label for="username">用户名</label>
+                            <input type="text" class="form-control" name="username" placeholder="Enter username">
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">输入评论</label>
+                            <textarea class="form-control" rows="3" name="comment_text"></textarea>
+                        </div>
+                        <input type="hidden" value="{$list.id}" name="article_id">
+                        <button type="button" class="btn btn-success" id="sub_comment">Submit</button>
+                </form>
+                <br>
+                <br>
+                <br>
+                <!-- Comment -->
+                <div>
+                <foreach name="comment" item='c'>
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" src="http://placehold.it/64x64" alt="" style="width: 50px;height: 50px;border-radius:50%">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">                    
+                            <if condition="$c.uid eq 0">
+                                匿名用户
+                            <else/>
+                                {$c.uid}
+                            </if>
+                            <small>August 25, 2014 at 9:30 PM</small>
+                        </h4>
+                        <input type="hidden" name="commentId" value={c.id}>
+                        {$c.content}
+                        <br/>
+                        <div>
+                            <span class="glyphicon glyphicon-chevron-up" style="cursor:pointer;"></span> 100&nbsp;|
+                            <span class="glyphicon glyphicon-chevron-down"style="cursor:pointer;"></span> 100&nbsp;|
+                            <span class="glyphicon glyphicon-edit"></span> 回复      
+                        </div>
+                        
+                        <foreach name="c.secondComment" item="s">
+                        <!-- Nested Comment -->
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img class="media-object" src="http://placehold.it/64x64" alt="" style="width: 50px;height: 50px;border-radius:50%">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <if condition="$s.uid eq 0">
+                                        匿名用户
+                                    <else/>
+                                        {$s.uid}
+                                    </if><small>回复了</small>{$s.comment_pid}
+                                    <small>August 25, 2014 at 9:30 PM</small>
+                                </h4>
+                                <input type="hidden" name="commentId" value={c.id}>
+                                {$s.content}
+                            </div>
+                        </div>
+                        <!-- End Nested Comment -->
+                        </foreach>
+                    </div>
+                </div>
+                </foreach>
+                </div>
+            </div>
+        </div>
+        <include file="common/footer"/>
+</div>
+</body>
+</html>

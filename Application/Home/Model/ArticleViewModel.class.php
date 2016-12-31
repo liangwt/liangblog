@@ -12,6 +12,7 @@ class ArticleViewModel extends ViewModel{
 			"last_edit_time",
 			"classification_id",
 			"uid",
+            "public",
 			"_type" => "LEFT",
 			),
 		"user_info"  => array(

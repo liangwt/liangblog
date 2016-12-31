@@ -144,16 +144,26 @@ class ArticleController extends CommonController{
 	 */
 	public function detailArticle($id){	
         if(!empty($id)){
-            $article = D("ArticleView")->where("article.id=".$id)->find();//文章信息        
-            $comment = $this->showComment($id);   
+            $article = D("ArticleView")->where("article.id=".$id)->find();//文章信息
+            $comment = $this->showComment($id);
             $tags    = M("tag") -> where("article_id=".$id) -> select();//标签信息
             $this -> assign([
                 "list"            => $article,
                 "classificationL" => $this->classificationL,
                 "comment"         => $comment,
                 "tags"            => $tags,
-                ]);
-            $this -> show();            
+            ]);
+            //检测是否有读取这篇文章的权限
+            //当作者为文章作者时，可以编辑
+            if($article["uid"]==$_SESSION["uid"]){
+                $this -> display(T("Home@Article/detailArticle_private"));
+            }elseif ($article["uid"]!=$_SESSION["uid"] && $article["public"]==1){
+                //当不是作者但是文章为公开的时候，可读但是不可写
+                $this -> display(T("Home@Article/detailArticle_public"));
+            }else{
+                //当既不是作者文章又不是公开的时候，报错
+                E("error");
+            }
         }else{
             E("error");
         }
