@@ -9,10 +9,14 @@
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/wangEditor/css/wangEditor.min.css">
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/highlightJS/styles/atelier-cave.dark.css">
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/TagsInput/dist/jquery.tagsinput.min.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css">
+
 <script type="text/javascript" src="__PUBLIC__/wangEditor/js/lib/emotions.js"></script>
 <script type="text/javascript" src="__PUBLIC__/wangEditor/js/wangEditor.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/TagsInput/dist/jquery.tagsinput.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Js/writeArticle.js"></script>
+
 
 <include file="common/nav"/>
 	<!--modal -->
@@ -39,6 +43,7 @@
 	</div>
 	<!--modal end -->
 	<!--main -->
+<div class="row">
 	<div class="container">
 		<div class="page-header" id="banner">
 			<div class="row">
@@ -48,7 +53,7 @@
 						<input type="text" class="form-control" name="title" placeholder="文章标题">
 						<span class='glyphicon glyphicon-remove form-control-feedback' style="display: none"></span>
 					</div>
-					<div>
+					<div class="form-group">
 						<textarea class="form-control" id="writearticle" style="height:100%;"></textarea>
 					</div>
 					<div class="form-group">
@@ -70,12 +75,23 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<div class="col-sm-1" style="padding-left: 0px">
 						<button type="button" id="publish_btn" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;发布</button>
+						</div>
+						<div class="switch" tabindex="0">
+							<input id="notification1" name="my-checkbox" type="checkbox" value="1"/>
+						</div>
+
 					</div>
 				</div>
 			</div>
+
 		</div>
+
 	</div>
+</div>
+<include file="common/footer"/>
+
 	<!--main end-->
 </body>
 </html>

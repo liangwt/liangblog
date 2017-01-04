@@ -77,6 +77,14 @@ $(function(){
    		'delimiter': [',',';'], 
     });
 
+    //switch
+    $("[name='my-checkbox']").bootstrapSwitch({
+        onColor: "warning",
+        offColor: "danger",
+        onText: "公开",
+        offText: "私密"
+	});
+
     //通过ajax提交博客信息到服务器
     $("#publish_btn").click(function(){
 		var html  = editor.$txt.html();
@@ -100,7 +108,8 @@ $(function(){
 				"content":html,
 				"title":title,
 				"tag":tag,
-				"classification":classification
+				"classification":classification,
+                "public":public
 			},
     		success:function(msg){                     
                 var json_data = $.parseJSON(msg);

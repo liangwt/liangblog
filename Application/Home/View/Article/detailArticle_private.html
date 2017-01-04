@@ -20,10 +20,17 @@
                     <h2 class="blog-post-title"><a href="{:U('Article/detailArticle')}?id={$list.id}">{$list.title}</a></h2>
 
                     <p class="blog-post-meta">{$list.create_time|strtotime|date="F d",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a>
-                    <a class="pull-right" href="{:U('Article/editArticle')}?id={$list.id}">编辑</a>
+                        <a class="pull-right" href="{:U('Article/editArticle')}?id={$list.id}">编辑</a>
                     
-                    <a class="pull-right" href="" id="deleteArticle">删除&nbsp;&nbsp;&nbsp;</a>
+                        <a class="pull-right" href="" id="deleteArticle">删除&nbsp;&nbsp;&nbsp;</a>
+                        <if condition="$list.public eq 0">
+                            <a class="pull-right" href="" id="chgToPub">公开此文章&nbsp;&nbsp;&nbsp;</a>
+                        <else/>
+                            <a class="pull-right" href="" id="chgToPiv">不公开此文章&nbsp;&nbsp;&nbsp;</a>
+                        </if>
+
                     </p>
+
 
                     <p class="blog-post-meta">
                         <foreach name="tags" item="t">

@@ -30,7 +30,7 @@ $(function(){
                         }).then(function(){
                             //跳转到页面详情
                             window.location.href = showArticle;
-                        })                          
+                        })
                     }else{
                         swal({
                             title:'Failed!',
@@ -39,11 +39,26 @@ $(function(){
                         }).then(function(){
                             //跳转到页面详情
                             window.location.href = showArticle;
-                        })                         
+                        })
                     }
- 
+
                 }
             });
+
+        })
+        return false;
+    });
+	//转换成公开的或者私密的确认
+    $("#chgToPub").click(function(){
+        swal({
+            title: 'Are you sure?',
+            text: "Do you want to change the status?",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then(function () {
 
         })
         return false;

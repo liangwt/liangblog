@@ -75,6 +75,7 @@ class ArticleController extends CommonController{
 		$classification = I("post.classification");
 		$tag            = I("post.tag");
         $article_id     = I("get.id");
+        $public         = I("post.public",0);
 
         $articleM = M("article");
         $tagM = M("tag");
@@ -87,6 +88,7 @@ class ArticleController extends CommonController{
                 "last_edit_time"    => date("Y-m-d H:m:s"),
                 "classification_id" => $classification,
                 "uid"               => $_SESSION["uid"],
+                "public"            => $public,
                 );     
             $article_id = $articleM -> add($article);   
 
