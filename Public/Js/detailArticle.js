@@ -49,7 +49,7 @@ $(function(){
         return false;
     });
 	//转换成公开的或者私密的确认
-    $("#chgToPub").click(function(){
+    $("#chgStu").click(function(){
         swal({
             title: 'Are you sure?',
             text: "Do you want to change the status?",
@@ -57,9 +57,34 @@ $(function(){
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Yes, change it!'
         }).then(function () {
+            $.ajax({
+                url:chgstatusUrl,
+                type:"POST",
+                dataType:"json",
+                success:function(msg){
+                    swal({
+                        title:'Success!',
+                        text:msg.message,
+                        type:'success'
+                    }).then(function(){
+                        //刷新页面
+                        location.reload();
+                    })
+                },
+                error:function(msg){
+                    swal({
+                        title:'error!',
+                        text:'There is something wrong with server',
+                        type:'error'
+                    }).then(function(){
+                        //刷新页面
+                        location.reload();
+                    })
+                }
 
+            })
         })
         return false;
     });

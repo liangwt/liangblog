@@ -1,0 +1,25 @@
+<include file="Home@common/header" title="后台管理"/>
+<script src="__PUBLIC__/echarts/echarts.js"></script>
+<script src="__PUBLIC__/echarts/china.js"></script>
+<script>
+    var viewDataUrl = "{:U('Admin/Article/viewData')}?id={$Think.get.id}";
+    var locationDataUrl = "{:U('Admin/Article/locationData')}?id={$Think.get.id}";
+</script>
+
+<include file="Home@common/nav"/>
+
+<div class="container">
+    <div class="row">
+        <div id="main" style="width: 800px;height:550px;margin: auto"></div>
+    </div>
+    <div class="row" style="margin-top:50px">
+        <div class="col-sm-6" id="location" style="width: 500px;height:450px;margin:40px">
+
+        </div>
+        <div class="col-sm-6 pull-right" id="location2" style="width: 500px;height:450px;margin-top:40px">
+
+        </div>
+    </div>
+</div>
+<script src="__PUBLIC__/Admin/showArticle/showArticle.js"></script>
+<include file="Home@common/footer"/>

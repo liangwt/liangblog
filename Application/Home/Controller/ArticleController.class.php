@@ -146,6 +146,9 @@ class ArticleController extends CommonController{
 	 */
 	public function detailArticle($id){	
         if(!empty($id)){
+            //记录访问信息，5分钟之外访问记录
+            recodeView($id);
+            //展示文章信息
             $article = D("ArticleView")->where("article.id=".$id)->find();//文章信息
             $comment = $this->showComment($id);
             $tags    = M("tag") -> where("article_id=".$id) -> select();//标签信息
@@ -174,6 +177,29 @@ class ArticleController extends CommonController{
 		exit();*/
 
 	}
+
+    /**
+     * 改变文章的公开状态
+     */
+	public function chgstatus(){
+	    $id = I("get.id");
+	    $articleM = M("article");
+	    $status = $articleM -> where("id=".$id) -> find();
+	    if($status["public"]==1){
+	        $articleM ->where("id=".$id) -> save(["public"=>0]);
+	        $response = array(
+	            "status" => 1,
+                "message" => "change to private"
+            );
+        }else{
+            $articleM ->where("id=".$id) -> save(["public"=>1]);
+            $response = array(
+                "status" => 1,
+                "message" => "change to public"
+            );
+        }
+        echo json_encode($response);
+    }
 	/**
 	 * 读取评论，通过读取根评论来获得跟评论下面的所有评论
 	 * @param  integer $articleId   文章id

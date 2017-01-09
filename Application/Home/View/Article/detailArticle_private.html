@@ -9,6 +9,7 @@
     var showArticle = "{:U('Article/showArticle')}"; 
     var commentUrl = "{:U('Article/saveComment')}";
     var deleteUrl = "{:U('Article/deleteArticle')}?id={$list.id}";
+    var chgstatusUrl = "{:U('Home/Article/chgstatus')}?id={$list.id}";
 </script>
 <include file="common/nav" />
 
@@ -24,9 +25,9 @@
                     
                         <a class="pull-right" href="" id="deleteArticle">删除&nbsp;&nbsp;&nbsp;</a>
                         <if condition="$list.public eq 0">
-                            <a class="pull-right" href="" id="chgToPub">公开此文章&nbsp;&nbsp;&nbsp;</a>
+                            <a class="pull-right" href="" id="chgStu">公开此文章&nbsp;&nbsp;&nbsp;</a>
                         <else/>
-                            <a class="pull-right" href="" id="chgToPiv">不公开此文章&nbsp;&nbsp;&nbsp;</a>
+                            <a class="pull-right" href="" id="chgStu">不公开此文章&nbsp;&nbsp;&nbsp;</a>
                         </if>
 
                     </p>
