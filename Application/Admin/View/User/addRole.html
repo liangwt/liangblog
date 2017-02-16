@@ -1,0 +1,117 @@
+<include file="Home@common/header" title="新建角色"/>
+<link href="__PUBLIC__/Admin/common/index.css" type="text/css" rel="stylesheet"/>
+<script src="__PUBLIC__/Admin/common/index.js"></script>
+<style>
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
+</style>
+<include file="Home@common/nav"/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9" style="background: #ffffff">
+            <legend>新建角色</legend>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="RoleName" class="col-sm-2 control-label">角色名</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="RoleName" placeholder="RoleName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">允许访问的页面</label>
+                    <div class="col-sm-8">
+                        <table class="table table-striped table-hover ">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>账号</th>
+                                <th>读取</th>
+                                <th>写入</th>
+                                <th>执行</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <foreach name="fileTree" item="file">
+                                <tr>
+                                    <td>{$key}</td>
+                                    <td>{$file}</td>
+                                    <th><input type="checkbox"/></th>
+                                    <th><input type="checkbox"/></th>
+                                    <th><input type="checkbox"/></th>
+                                </tr>
+                            </foreach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">所属用户</label>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-sm-6"><b>所有用户</b></div>
+                            <div class="col-sm-6"><b>添加到角色组</b></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <select multiple id="allUser" class="form-control">
+                                    <foreach name="userList" item="user">
+                                        <option value={$user.id}>{$user.username}</option>
+                                    </foreach>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <select multiple id="roleUser" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <button class="btn btn-default btn-xs" id="allUser1"><b>全选</b></button>
+                                <button class="btn btn-default btn-xs" id="allUser2"><b>反选</b></button>
+                                <button class="btn btn-default btn-xs" id="allUser3"><b>>>></b></button>
+                            </div>
+                            <div class="col-sm-6">
+                                <button class="btn btn-default btn-xs" id="roleUser3"><b><<<</b></button>
+                                <button class="btn btn-default btn-xs" id="roleUser2"><b>反选</b></button>
+                                <button class="btn btn-default btn-xs" id="roleUser1"><b>全选</b></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-8">
+                        <button type="submit" class="btn btn-default">Sign in</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3">
+            <div class="well">
+                <h4>Blog Categories</h4>
+                <hr/>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ul class="list-unstyled">
+                            <foreach name="classificationL" item="v">
+                                <if condition="$v.classification neq null">
+                                    <li><a href="#">{$v.classification}</a>&nbsp;<span class="badge">{$v.classification_num}</span></li>
+                                    <hr/>
+                                </if>
+                            </foreach>
+                        </ul>
+                        <h4>Side Widget Well</h4>
+                        <hr/>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.
+                        </p>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+    </div>
+    <include file="Home@common/footer"/>

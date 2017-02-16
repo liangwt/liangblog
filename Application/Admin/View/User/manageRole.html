@@ -1,0 +1,76 @@
+<include file="Home@common/header" title="后台管理"/>
+<link href="__PUBLIC__/Admin/common/index.css" type="text/css" rel="stylesheet"/>
+<script src="__PUBLIC__/Admin/common/index.js"></script>
+<style>
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+</style>
+<include file="Home@common/nav"/>
+
+<div class="container">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <b>角色管理</b>
+
+                <form action="" method="post" class="pull-right">
+
+                    <a href="{:U('Admin/User/index')}" target="_blank">用户管理</a>
+                    &nbsp;
+                    &nbsp;
+                    <a href="{:U('Admin/User/addUser')}" target="_blank">添加用户</a>
+                    &nbsp;
+                    &nbsp;
+                    <a href="{:U('Admin/User/addRole')}" target="_blank">添加角色</a>
+                    &nbsp;
+                    &nbsp;
+                    <input type="text" class="text" value="Search" id="user_ser">
+
+                </form>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped table-hover ">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" class="selectAll"/></th>
+                        <th>#</th>
+                        <th>角色名</th>
+                        <th>锁定状态</th>
+                        <th>所属用户</th>
+
+                        <th>允许访问的页面</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="roleList" item="role">
+                        <tr>
+                            <th><input type="checkbox"/></th>
+                            <td>{$role.id}</td>
+                            <td>{$role.rolename}</td>
+                            <if condition="$role.status eq 1">
+                                <td>激活</td>
+                                <else/>
+                                <td>注销</td>
+                            </if>
+
+                            <td>{$user.truename}</td>
+                            <td>
+
+                            </td>
+                            <td>{$user.rolenames}</td>
+                            <td>{$user.password}</td>
+                            <td>edit&nbsp;|&nbsp;delete</td>
+                        </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <ul class="pagination pagination-sm pull-right">
+                    {$userShow}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Home@common/footer"/>
