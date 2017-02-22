@@ -30,7 +30,8 @@ function recodeView($article_id=0){
     //在5分钟之内访问，不记录
     if(strtotime("now")-strtotime($viewData["view_datetime"]) >= 5*60){
         //使用百度api获取地址，当获取失败时返回other
-        $address = json_decode(IpToLocation($ip))->{"address"} || "other";
+        //json_decode($json,[var]), 第二参数为true时返回数组，默认返回对象
+        $address = json_decode(IpToLocation($ip))->{"address"} or "other";
         list($country,$province,$city,$none,$net,$other,$other2)=explode("|",$address);
         $data = array(
             "view_ip" => $ip,
@@ -44,10 +45,39 @@ function recodeView($article_id=0){
     }
 }
 
+/**
+ * 从bing图片取图
+ * @param int $idx 不同日期的图片
+ * @param int $n   一次取多少张照片
+ * @return array $wallerURL   索取照片的所有url
+ *
+ */
+function getBingWaller($idx=0,$n=1){
+    //必应图片API
+    $url = "http://www.bing.com/HPImageArchive.aspx?format=js&idx=".$idx."&n=".$n."&mkt=zh-CN";
+    $ch = curl_init($url);
+    curl_setopt($ch,CURLOPT_HTTPHEADER,array(
+        "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+        "Accept-Language: en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4,zh-TW;q=0.2",
+        "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+    ));
+    //TRUE 将curl_exec()获取的信息以字符串返回，而不是直接输出。
+    curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+    $response = curl_exec($ch);
+    curl_close($ch);
+    $data = json_decode($response,true);
+//    var_dump($data);
+    foreach ($data["images"] as $key => $value) {
+        $wallerURL[] = "http://www.bing.com".$value["url"];
+    }
+    return $wallerURL;
+}
+
 
 /*
 测试程序
 echo $str = encryption("127.0.0.1|1");
 echo "\nMTI3LjAuMC4xfDE=\n";
-echo encryption($str,0);*/
+echo encryption($str,0);
+echo getBingWaller(0,2);*/
 ?>
