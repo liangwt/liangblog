@@ -15,7 +15,7 @@ return array(
     'DB_PREFIX'            => 'blog_',
     'DB_CHARSET'           => 'utf8',
     //调试信息
-    'SHOW_PAGE_TRACE'      => false,
+    'SHOW_PAGE_TRACE'      =>  true,
     //错误信息
     'ERROR_PAGE'           => __ROOT__ . '/Public/404/error.html',
     //'DB_FIELD_CACHE'       => false,

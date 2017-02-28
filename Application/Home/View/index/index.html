@@ -16,11 +16,20 @@
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
-                        <foreach name="carouselPic" item="url" key="k">
-                            <div class="item <if condition='$k eq 0'>active</if>">
-                                <img src="{$url}" alt="{$k}" style="width: 900px;height: 500px">
-                            </div>
-                        </foreach>
+                        <if condition="empty($carouselPic)">
+                            <img src="__PUBLIC__/Carousel/stock-photo-388736.jpg" style="width: 900px;height: 500px">
+                        <else/>
+                            <foreach name="carouselPic" item="pic" key="k">
+                                <div class="item <if condition='$k eq 0'>active</if>">
+                                    <img src="{$pic.url}" alt="{$pic.copyright}" style="width: 900px;height: 500px">
+                                    <div class="carousel-caption">
+                                        <h4>{$pic.comment}</h4>
+                                        <p>{$pic.copyright}</p>
+                                    </div>
+                                </div>
+
+                            </foreach>
+                        </if>
                     </div>
 
                     <!-- Controls -->
@@ -37,8 +46,8 @@
             </div>
             <!-- /.blog-main -->
 
-            <include file="common/sidebar"/>
-            <include file="common/footer"/>
+            <include file="common/sidebar_index"/>
+
 
         </div>
     </div>
