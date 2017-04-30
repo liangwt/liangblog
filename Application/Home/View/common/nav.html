@@ -3,6 +3,7 @@
   var loginurl = "{:U('Home/login/login')}";
   var logouturl = "{:U('Home/login/logout')}";
   var goup = "__PUBLIC__/image/nav/up.png";
+  var checkLoginURL = "{:U('Home/Login/LoginAndHasAccess')}";
 </script>
 <script type="text/javascript" src="__PUBLIC__/Js/nav.js"></script>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/goup/goup.css">
@@ -94,7 +95,7 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="{:U('Home/Article/showArticle')}">博客</a></li>
+                <li id="nav-blog"><a href="{:U('Home/Article/showArticle')}">博客</a></li>
                 <li><a href="http://resume.qmail.com/liang.w.t/351hjrDgthw">简历</a></li>
                 <li><a href="{:U('Home/About/about')}">关于</a></li>
             </ul>

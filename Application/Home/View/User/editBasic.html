@@ -1,0 +1,159 @@
+<include file="common/header" title="修改个人信息"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/uploadify.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/datetimepicker/bootstrap-datetimepicker.css">
+<script type="text/javascript" src="__PUBLIC__/Js/editBasic.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/city.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/jquery.uploadify.js"></script>
+<script type="text/javascript" src="__PUBLIC__/datetimepicker/Moment.js"></script>
+<script type="text/javascript" src="__PUBLIC__/datetimepicker/moment-with-locales.js"></script>
+<script type="text/javascript" src="__PUBLIC__/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+
+<script type="text/javascript">
+	var PUBLIC = "__PUBLIC__";
+	var ROOT = "__ROOT__/";
+	var uploader = "{:U('user/uploadify')}";
+	var basicForm = "{:U('user/basicForm')}";
+</script>
+
+<include file="common/nav"/>
+<div class="container">
+	<div class="page-header" id="banner">
+		<div class="row">
+			<div class="col-md-9 column">
+				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingOne">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+								基本信息
+								</a>
+							</h4>
+						</div>
+						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+							<div class="panel-body">
+								<form role="form" enctype="multipart/form-data" method="post" id="basic-post-form" class="form-horizontal">
+									<div class="form-group">
+										<label for="face" class="col-lg-2 control-label">头像</label>	
+										<div class="col-lg-10">
+											<div style="width:100px; height:100px; border-radius:50%; overflow:hidden;display:none; text-align:center" >
+											<img src="" id="afterFace" />
+											</div>
+										<input type="file" id="face" name="face">
+										<input type="hidden" name="faceAdress" id="faceAdress"/>
+										</div>
+									</div>
+
+									<div class="form-group has-feedback" >
+									<label for="username" class="col-lg-2 control-label">用户名</label>
+									<div class="col-lg-10">
+									<input type="text" name="username" class="form-control" id="username" placeholder="用户名">
+									<span class="glyphicon glyphicon-ok form-control-feedback"></span>
+									</div>
+									</div>
+
+									<div class="form-group">
+									<label for="sex" class="col-lg-2 control-label">性别</label>
+									<div class="col-lg-10">
+									<input type="radio" name="sex" id="male" value="m" checked>
+									男			  		
+									<input type="radio" name="sex" id="female" value="f" checked>
+									女
+									</div>
+									</div>	
+
+									<div class="form-group" >
+									<label for="truename" class="col-lg-2 control-label">真实姓名</label>
+									<div class="col-lg-10"> 
+									<input type="text" name="truename" class="form-control" id="truename" placeholder="真实姓名">
+									</div>
+									</div>			
+
+									<div class="form-group">
+										<label for="username" class="col-lg-2 control-label">出生日期</label>
+										<div class="col-lg-10">
+										<div class='input-group date' id='datetimepicker'>
+											<input type='text' class="form-control" name="age"/>
+											<span class="input-group-addon">
+											<span class="glyphicon glyphicon-calendar"></span>
+											</span>
+										</div>
+										</div>
+									</div>	
+
+									<div class="form-group">
+									<label for="email" class="col-lg-2 control-label">电子邮箱</label>
+									<div class="col-lg-10">
+									<input type="email" name="email" class="form-control" id="email" placeholder="电子邮箱">
+									</div>
+									</div>
+
+									<div class="form-group">
+									<label for="address" class="col-lg-2 control-label">地址</label>
+									<div class="col-lg-10">	
+									<select name="province" id="" class="form-control">
+									<option value="">请选择</option>
+									</select>&nbsp;&nbsp;&nbsp;&nbsp;
+									<select name="city" class="form-control">
+									<option value="">请选择</option>
+									</select>
+									</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-lg-2 col-lg-offset-2 ">
+											<button type="submit" class="btn btn-default" id="basic-info-btn">Submit</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingTwo">
+							<h4 class="panel-title">
+								<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+								修改密码
+								</a>
+							</h4>
+						</div>
+						<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+							<div class="panel-body">
+								<div class="form-group">
+									<label for="truename">旧密码</label>
+									<input type="password" class="form-control" id="oldpassword" placeholder="旧密码">
+								</div>	
+
+								<div class="form-group">
+									<label for="truename">新密码</label>
+									<input type="password" class="form-control" id="newpassword" placeholder="新密码">
+								</div>	
+
+								<div class="form-group">
+									<label for="truename">确认密码</label>
+									<input type="password" class="form-control" id="rnewpassword" placeholder="确认密码">
+								</div>	
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingThree">
+							<h4 class="panel-title">
+								<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+								个人设置
+								</a>
+							</h4>
+						</div>
+						<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+							<div class="panel-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<include file="common/sidebar"/>
+		</div>
+	</div>
+</div>
+</body>
+</html>

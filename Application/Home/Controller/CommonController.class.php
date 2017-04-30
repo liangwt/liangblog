@@ -34,7 +34,6 @@ class CommonController extends controller{
 		$this -> assign("classificationL",$classificationL);
 
 	}
-
 }
 
 

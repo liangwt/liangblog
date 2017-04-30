@@ -1,0 +1,59 @@
+<include file="common/header" title="首页"/>
+
+<include file="common/nav"/>
+
+<div class="container">
+    <div class="page-header" id="banner">
+        <div class="row">
+            <div class="col-md-9 column">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <if condition="empty($carouselPic)">
+                            <img src="__PUBLIC__/Carousel/stock-photo-388736.jpg" style="width: 900px;height: 500px">
+                        <else/>
+                            <foreach name="carouselPic" item="pic" key="k">
+                                <div class="item <if condition='$k eq 0'>active</if>">
+                                    <img src="{$pic.url}" alt="{$pic.copyright}" style="width: 900px;height: 500px">
+                                    <div class="carousel-caption">
+                                        <h4>{$pic.comment}</h4>
+                                        <p>{$pic.copyright}</p>
+                                    </div>
+                                </div>
+
+                            </foreach>
+                        </if>
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+            </div>
+            <!-- /.blog-main -->
+
+            <include file="common/sidebar_index"/>
+
+
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+</body>
+</html>

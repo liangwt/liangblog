@@ -119,4 +119,27 @@ $(function(){
    			}	
 		})   		
    	})
+
+	//点击博客按钮触发ajax检测是否已经登录以及是否有权限
+    //如果有登录并且权限则正常打开，如果没有则弹出登录框
+    $("#nav-blog").click(function(){
+        var flag = false;
+        $.ajax({
+            type:"POST",
+            url:checkLoginURL,
+            async:false,
+            data:{},
+            success:function(msg){
+                var json_data = $.parseJSON(msg);
+                if(!json_data.status){
+                    toastr.error("请登录...");
+                    $('#login').modal();
+                    flag = false;
+                }else{
+                    flag = true;
+                }
+            }
+        });
+        return flag;
+    })
 })

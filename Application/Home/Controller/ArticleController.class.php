@@ -25,7 +25,11 @@ class ArticleController extends CommonController{
 		$article = D("ArticleView");
 
 		//分页之后的文章列表
-		$this->articleL = $article->where("article.uid=".$_SESSION['uid'])->group("article.id")->order('create_time desc')->page(I("get.p",1).',5')->select();
+		$this->articleL = $article->where("article.uid=".$_SESSION['uid'])
+                                  ->group("article.id")
+                                  ->order('create_time desc')
+                                  ->page(I("get.p",1).',5')
+                                  ->select();
 		$this->assign('lists',$this->articleL);// 赋值数据集
 		//页码标签
 		$count = $article->where("article.uid=".$_SESSION['uid'])->count("distinct article.id");

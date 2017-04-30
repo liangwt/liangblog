@@ -3,6 +3,37 @@ namespace Home\Controller;
 use Think\Controller;
 
 class LoginController extends Controller{
+    //ajax判断是否有读取文章的权限
+    public function LoginAndHasAccess(){
+        if(!IS_AJAX){
+            E('页面不存在');
+        }
+        $ip = get_client_ip();
+        //读取cookie里的自动登录保存下的信息
+        $cookieValue = explode("|",encryption($_COOKIE['auto'],0));
+        //有auto的信息并且没有建立session 说明是头一次登录的情况
+        if(isset($_COOKIE['auto']) && !isset($_SESSION['uid'])){
+            if($ip == $cookieValue[0]){
+                $user = M('user');
+                $result = $user->where("id=".$cookieValue[1])->find();
+                if(!$result['lock']){
+                    $_SESSION['uid'] = $result['id'];
+                }
+            }
+        }
+        if(isset($_SESSION['uid'])){
+            $responseArray = [
+                "status" => 1,
+                "message" => "success"
+            ];
+        }else {
+            $responseArray = [
+                "status" => 0,
+                "message" => "error"
+            ];
+        }
+        echo json_encode($responseArray);
+    }
 	function register(){
 /*		if(!IS_AJAX){
 			E('页面不存在');
