@@ -17,11 +17,11 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         <if condition="empty($carouselPic)">
-                            <img src="__PUBLIC__/Carousel/stock-photo-388736.jpg" style="width: 900px;height: 500px">
+                            <img style="height: 100%;width: 100%" src="__PUBLIC__/Carousel/stock-photo-388736.jpg">
                         <else/>
                             <foreach name="carouselPic" item="pic" key="k">
                                 <div class="item <if condition='$k eq 0'>active</if>">
-                                    <img src="{$pic.url}" alt="{$pic.copyright}" style="width: 900px;height: 500px">
+                                    <img src="{$pic.url}" alt="{$pic.copyright}" style="height: 100%;width: 100%">
                                     <div class="carousel-caption">
                                         <h4>{$pic.comment}</h4>
                                         <p>{$pic.copyright}</p>

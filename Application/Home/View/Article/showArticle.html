@@ -23,20 +23,20 @@
                 </article>
                 <hr>
                 </foreach>
+                <!--页码 -->
+                <div class="row center-block">
+                    <nav>
+                        <ul class="pagination">
+                            {$page}
+                        </ul>
+                    </nav>
+
+                </div>
+                <!-- Pager -->
             </div>
-            <!-- Pager -->
             <include file="common/sidebar"/>
         </div>
         <!-- /.row -->
-        <div class="row">
-
-                <nav>
-                    <ul class="pagination">
-                        {$page}
-                    </ul>
-                </nav>
-
-        </div>
         <include file="Home@common/footer"/>
     </div>
     <!-- /.container -->

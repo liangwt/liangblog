@@ -21,9 +21,9 @@
                         <else/>
                             <foreach name="carouselPic" item="pic" key="k">
                                 <div class="item <if condition='$k eq 0'>active</if>">
-                                    <img src="{$pic.url}" alt="{$pic.copyright}" style="width: 900px;height: 500px">
+                                    <img src="{$pic.url}" alt="{$pic.copyright}" style="height: 100%;width: 100%">
                                     <div class="carousel-caption">
-                                        <h4>{$pic.comment}</h4>
+                                        <h4 class="hidden-xs">{$pic.comment}</h4>
                                         <p>{$pic.copyright}</p>
                                     </div>
                                 </div>

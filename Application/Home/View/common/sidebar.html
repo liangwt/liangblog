@@ -3,14 +3,14 @@
 
     <!-- Blog Categories Well -->
     <div class="well">
-        <h4>Blog Categories</h4>
+        <h4 class="center-block">Blog Categories</h4>
         <hr/>
         <div class="row">
             <div class="col-lg-12">
                 <ul class="list-unstyled">
                     <foreach name="classificationL" item="v">
                         <if condition="$v.classification neq null">
-                            <li><a href="#">{$v.classification}</a>&nbsp;<span
+                            <li class="center-block"><a href="#">{$v.classification}</a>&nbsp;<span
                                     class="badge">{$v.classification_num}</span></li>
                             <hr/>
                         </if>
