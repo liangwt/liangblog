@@ -21,8 +21,7 @@ return array(
     //'DB_FIELD_CACHE'       => false,
     //'HTML_CACHE_ON'        => false,
     //'HTML_CACHE_TIME'      => 1,
-    'URL_CASE_INSENSITIVE' => true,
     // 'TMPL_EXCEPTION_FILE' => APP_PATH.'/Public/exception/exception.tpl',
     'DEFAULT_MODULE'       => 'Home',  // 默认模块
-    'SHOW_ERROR_MSG'       => true,
+    'SHOW_ERROR_MSG'       => false,
 );
