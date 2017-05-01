@@ -72,7 +72,7 @@ class LoginController extends Controller{
 				'username' => $account,
 				),
 			);
-		$uid = D('UserRelation') -> relation(true)-> add($registerAccount);
+		$uid = D('Home/UserRelation') -> relation(true)-> add($registerAccount);
 		if($uid){
 			$_SESSION['uid']      = $uid;
 			$_SESSION['username'] = $account;

@@ -15,7 +15,7 @@ class ArticleController extends CommonController{
 		$this->assign([
 			"classification"=>$classification,
 			]);
-		$this->display();
+		$this->display(T("Home@Article/writeArticle"));
 	}
 	/**
 	 * 显示博客列表
@@ -60,7 +60,12 @@ class ArticleController extends CommonController{
             "edit" => $edit,
             "article_id"=>$id,
             ));
-        $this->writeArticle();
+        //展示分类下拉列表
+        $classification = D("classification")->where(array("uid"=>$_SESSION['uid']))->select();
+        $this->assign([
+            "classification"=>$classification,
+        ]);
+        $this->display(T("Home@Article/editArticle"));
 /*        
         $articleM = M("article");
         $tagM = M("tag");
