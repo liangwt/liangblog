@@ -1,11 +1,11 @@
 <?php
 return array(
     //'配置项'=>'配置值'
-    'DB_HOST' => 'bdm186320493.my3w.com',
+    'DB_HOST' => '127.0.0.1',
     'DB_TYPE' => 'mysql',
-    'DB_NAME' => 'bdm186320493_db',
-    'DB_USER' => 'bdm186320493',
-    'DB_PWD'  => 'lianglog',
+    'DB_NAME' => 'liangblog',
+    'DB_USER' => 'root',
+    'DB_PWD'  => '369125255L',
     /*	'DB_TYPE'    => 'mysql',
         'DB_NAME'    => 'liangblog',
         'DB_USER'    => 'root',
@@ -15,7 +15,7 @@ return array(
     'DB_PREFIX'            => 'blog_',
     'DB_CHARSET'           => 'utf8',
     //调试信息
-    'SHOW_PAGE_TRACE'      =>  true,
+    'SHOW_PAGE_TRACE'      =>  false,
     //错误信息
     'ERROR_PAGE'           => __ROOT__ . '/Public/404/error.html',
     //'DB_FIELD_CACHE'       => false,
