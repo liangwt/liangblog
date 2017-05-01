@@ -27,7 +27,7 @@ class ArticleController extends CommonController{
 		//分页之后的文章列表
 		$this->articleL = $article->where("article.uid=".$_SESSION['uid'])
                                   ->group("article.id")
-                                  ->order('create_time desc')
+                                  ->order('last_edit_time desc')
                                   ->page(I("get.p",1).',5')
                                   ->select();
 		$this->assign('lists',$this->articleL);// 赋值数据集
