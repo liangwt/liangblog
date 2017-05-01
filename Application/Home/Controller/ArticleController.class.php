@@ -39,7 +39,7 @@ class ArticleController extends CommonController{
 		exit();*/
 
 		$this->assign("page",$show);
-		$this->show();		
+		$this->show();
 	}
 
     /**
