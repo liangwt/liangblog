@@ -15,7 +15,7 @@ class ArticleController extends CommonController{
 		$this->assign([
 			"classification"=>$classification,
 			]);
-		$this->display(T("Home@Article/writeArticle"));
+		$this->display();
 	}
 	/**
 	 * 显示博客列表

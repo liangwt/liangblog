@@ -1,5 +1,4 @@
 <include file="Home@common/header" title="后台管理"/>
-<link href="__PUBLIC__/Admin/common/index.css" type="text/css" rel="stylesheet"/>
 <script src="__PUBLIC__/Admin/common/index.js"></script>
 <style>
     a {
@@ -8,29 +7,22 @@
     }
 </style>
 <include file="Home@common/nav"/>
-
 <div class="container">
     <div class="row">
-        <div class="panel panel-default">
+        <div class="panel panel-info">
             <div class="panel-heading">
                 <b>用户管理</b>
-
-                <form action="" method="post" class="pull-right">
-
-                    <a href="{:U('Admin/User/manageRole')}" target="_blank">角色管理</a>
-                    &nbsp;
-                    &nbsp;
-                    <a href="{:U('Admin/User/addUser')}" target="_blank">添加用户</a>
-                    &nbsp;
-                    &nbsp;
-                    <a href="{:U('Admin/User/addRole')}" target="_blank">添加角色</a>
-                    &nbsp;
-                    &nbsp;
+                &nbsp;
+                <a href="{:U('Admin/User/manageRole')}" target="_blank">角色管理</a>
+                &nbsp;
+                <a href="{:U('Admin/User/addUser')}" target="_blank">添加用户</a>
+                &nbsp;
+                <a href="{:U('Admin/User/addRole')}" target="_blank">添加角色</a>
+                <form action="" method="post" class="pull-right hidden-xs">
                     <input type="text" class="text" value="Search" id="user_ser">
-
                 </form>
             </div>
-            <div class="panel-body">
+            <div class="panel-body table-responsive">
                 <table class="table table-striped table-hover ">
                     <thead>
                     <tr>
@@ -67,4 +59,5 @@
         </div>
     </div>
 </div>
-<include file="Home@common/footer"/>
+</body>
+</html>

@@ -25,7 +25,7 @@ class CommonController extends controller{
 			$this->redirect("Admin/login/index",'',3);
 		}
 
-		$article = D("ArticleView");
+		$article = D("Home/ArticleView");
 		$classificationL = $article 
 						 ->field("classification,count(distinct article.id) as classification_num") 
 						 ->where(array("classification.uid"=>$_SESSION['uid']))

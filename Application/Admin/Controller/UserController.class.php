@@ -9,8 +9,9 @@ namespace Admin\Controller;
 
 use Think\Controller;
 use Think\Crypt\Driver\Think;
+use Home\Controller\CommonController;
 
-class UserController extends Controller
+class UserController extends CommonController
 {
     /**
      * 用于后台显示出文章和用户

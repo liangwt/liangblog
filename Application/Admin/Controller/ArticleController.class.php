@@ -7,9 +7,9 @@
  */
 namespace Admin\Controller;
 
-use Think\Controller;
+use Home\Controller\CommonController;
 
-class ArticleController extends Controller
+class ArticleController extends CommonController
 {
     function index()
     {
