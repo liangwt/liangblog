@@ -5,7 +5,7 @@ use Home\Controller\CommonController;
 class UserController extends CommonController{
 
 	public function editBasic(){
-		$this -> show();
+		$this -> display(T("Home@User/editBasic"));
 	}
 	/**
 	 * 用来处理ajax文件上传的函数，即uploader
