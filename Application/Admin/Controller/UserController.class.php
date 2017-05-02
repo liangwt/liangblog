@@ -35,7 +35,7 @@ class UserController extends CommonController
             "userList" => $userL,
             "userShow" => $userShow,
         ));
-        $this->display();
+        $this->display(T("Admin@User/index"));
     }
 
     /**
@@ -65,7 +65,7 @@ class UserController extends CommonController
             "userList" => $userL,
             "fileTree" => array_merge($adminFileTree, $homeFileTree),
         ));
-        $this->display();
+        $this->display(T("Admin@/User/addUser"));
     }
 
     /**
@@ -103,6 +103,6 @@ class UserController extends CommonController
         $this->assign([
            "roleList"=>$roleL,
         ]);
-        $this->display();
+        $this->display(T("Admin@User/manageRole"));
     }
 }

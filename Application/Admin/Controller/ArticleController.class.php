@@ -34,7 +34,7 @@ class ArticleController extends CommonController
     {
         $articleL = M("article")->where("id=" . I("get.id"))->find();
         if ($articleL) {
-            $this->display();
+            $this->display(T("Admin@Article/showArticle"));
         } else {
             $this->show("文章不存在");
         }
