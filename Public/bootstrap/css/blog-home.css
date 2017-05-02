@@ -3,7 +3,6 @@
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
-
 body {
     padding-top: 0px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     background-color: rgb(244,244,244);
@@ -52,6 +51,7 @@ footer {
 }
 .showArticle{
 	background-color: #fff;
+    border-radius: 4px;
 }
 .modal-backdrop {
 	z-index: 0;

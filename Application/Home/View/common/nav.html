@@ -23,31 +23,31 @@
         <h4 class="modal-title" id="myModalLabel">登陆</h4>
       </div>
       <div class="modal-body">
-        <div class="form-group">
-          <label for="account">账户</label> 
-          <input type="text" name="account" class="form-control" id="login_account" placeholder="账户">
+            <div class="form-group">
+              <label for="account">账户</label>
+              <input type="text" name="account" class="form-control" id="login_account" placeholder="账户">
+            </div>
+            <div class="form-group">
+              <label for="login_password">密码</label>
+              <input type="password" name="password" class="form-control" id="login_password" placeholder="密码">
+            </div>
+            <div class="form-group">
+              <label for="login_code">验证码</label>
+              <input type="text" name="password" id="login_code" class="form-control" placeholder="验证码">
+            </div>
+            <div class="form-group">
+                <image class="img-responsive" src="{:U('Home/login/verifyCode')}" id="verifyCode" style="padding: 10px 0px 10px 0px;">
+            </div>
+            <div class="form-group">
+                <label class="checkbox" for="auto_login">
+                    <input type="checkbox" name="auto" id="auto_login" value=1 data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                    自动登录
+                </label>
+            </div>
         </div>
-        <div class="form-group">
-          <label for="login_password">密码</label>
-          <input type="password" name="password" class="form-control" id="login_password" placeholder="密码">
-        </div>
-
-        <div class="form-group">
-          <label for="login_code">验证码</label>
-          <input type="text" name="password" id="login_code" class="form-control" placeholder="验证码">
-        </div>
-        <div class="form-group">
-            <image class="img-responsive" src="{:U('Home/login/verifyCode')}" id="verifyCode">
-        </div>        
-        <div class="form-group">
-          <label>
-            <input type="checkbox" name="auto" id="auto_login" value="1"> 自动登录
-          </label>
-        </div>
-      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;&nbsp;关闭</button>
-        <div id="btn_submit" class="pull-left" data-dismiss="modal"><a href="#" data-toggle="modal" data-target="#register">没有账号？点击注册</a></div>
+        <div id="btn_submit" class="pull-left" data-dismiss="modal"><a href="#" class="login-link" data-toggle="modal" data-target="#register">没有账号？点击注册</a></div>
         <button type="button" id="btn_login" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;登陆</button>
       </div>
     </div>
