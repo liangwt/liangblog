@@ -2234,7 +2234,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 }
 .bootstrap-tagsinput {
   background-color: #ffffff;
-  border: 2px solid #ebedef;
+  border: 2px solid;
   border-radius: 6px;
   margin-bottom: 18px;
   padding: 6px 1px 1px 6px;
@@ -2327,7 +2327,6 @@ fieldset[disabled] .input-group-btn .btn-default.active {
   margin-bottom: 18px;
 }
 .tagsinput-primary .bootstrap-tagsinput {
-  border-color: #1abc9c;
   margin-bottom: 0;
 }
 .tagsinput-primary .tag {
@@ -2542,7 +2541,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 @media (max-width: 767px) {
   .pagination {
     height: 41px;
-    padding: 0 55px 0 52px;
+    padding: 0 0px 0 0px;
     overflow: auto;
     white-space: nowrap;
     border-radius: 6px;
