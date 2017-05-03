@@ -28,4 +28,30 @@ class IndexController extends Controller {
         ]);
     	$this -> show();
     }
+
+    /**
+     * 显示首页上的文章列表
+     * 文章的权限为公开
+     * 右侧分为热门文章与热门评论热门分类
+     */
+    public function showArticle(){
+        $article = D("ArticleView");
+
+        //分页之后的文章列表
+        $this->articleL = $article->where(["public"=>1])
+            ->group("article.id")
+            ->order('last_edit_time desc')
+            ->page(I("get.p",1).',5')
+            ->select();
+        $this->assign('lists',$this->articleL);// 赋值数据集
+        //页码标签
+        $count = $article->where(["public"=>1])->count("distinct article.id");
+        $page  = new \Think\Page($count,5);
+        $show  = $page->show();
+        /*print_r($show);
+        exit();*/
+
+        $this->assign("page",$show);
+        $this->display(T("Home@Index/showArticle"));
+    }
 }

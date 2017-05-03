@@ -1,0 +1,43 @@
+<include file="common/header" title="文章列表"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/highlightJS\styles\atelier-cave.dark.css">
+<script type="text/javascript" src="__PUBLIC__/Js/showArticle/readmore.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/showArticle/showArticle.js"></script>
+<script type="text/javascript" src="__PUBLIC__/goup/goup.js"></script>
+<include file="common/nav"/>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-9">
+                <foreach name="lists" item="list">
+                <!-- First Blog Post -->
+                    <h2>
+                        <a href="{:U('Article/detailArticle')}?id={$list.id}">{$list.title}</a>
+                    </h2>
+                <p><span class="glyphicon glyphicon-time"></span>{$list.create_time|strtotime|date="F d,Y  ",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a></p>
+                <article>
+                    <p class="showArticle_article">{$list.content|htmlspecialchars_decode|strip_tags|mb_substr=###,0,600}</p>
+                </article>
+                <hr>
+                </foreach>
+                <!--页码 -->
+                <div class="row center-block">
+
+                        <ul class="pagination">
+                            {$page}
+                        </ul>
+
+                </div>
+                <!-- Pager -->
+            </div>
+            <include file="common/sidebar"/>
+        </div>
+        <!-- /.row -->
+        <include file="Home@common/footer"/>
+    </div>
+    <!-- /.container -->
+</body>
+</html>
