@@ -15,7 +15,7 @@
                 <foreach name="lists" item="list">
                 <!-- First Blog Post -->
                     <h2>
-                        <a href="{:U('Article/detailArticle')}?id={$list.id}">{$list.title}</a>
+                        <a href="{:U('Home/Index/detailArticle')}?id={$list.id}">{$list.title}</a>
                     </h2>
                 <p><span class="glyphicon glyphicon-time"></span>{$list.create_time|strtotime|date="F d,Y  ",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a></p>
                 <article>
