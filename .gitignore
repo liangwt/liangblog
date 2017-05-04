@@ -2,3 +2,4 @@ Runtime
 /Application/Runtime/*
 /Application/Common/Conf/*
 index.php
+/.idea
