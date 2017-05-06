@@ -69,7 +69,7 @@ class LoginController extends Controller{
 			'password' => md5($password),
 			'reg_time' => date("Y-m-d H:i:s"),
 			'user_info' => array(
-				'username' => $account,
+				'username' => "User_".$account,
 				),
 			);
 		$uid = D('Home/UserRelation') -> relation(true)-> add($registerAccount);
