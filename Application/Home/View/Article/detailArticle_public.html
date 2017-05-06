@@ -33,7 +33,7 @@
                         <foreach name="tags" item="t">
                             <span class="label">{$t.name|trim=###}</span>&nbsp;
                         </foreach>                    
-                    </p> 
+                    </p>
 
                     <hr>
                     <p>{$list.content|htmlspecialchars_decode=###}</p>
@@ -45,15 +45,10 @@
                 <form role="form" id="comment">
                     <legend>发布评论</legend>
                         <div class="form-group">
-                            <label for="username">用户名</label>
-                            <input type="text" class="form-control" name="username" placeholder="Enter username">
-                        </div>
-                        <div class="form-group">
-                            <label for="comment">输入评论</label>
                             <textarea class="form-control" rows="3" name="comment_text"></textarea>
                         </div>
                         <input type="hidden" value="{$list.id}" name="article_id">
-                        <button type="button" class="btn btn-success" id="sub_comment">Submit</button>
+                        <button type="button" class="btn btn-success btn-sm" id="sub_comment">Submit</button>
                 </form>
                 <br>
                 <br>

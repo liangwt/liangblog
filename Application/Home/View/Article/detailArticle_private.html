@@ -21,11 +21,9 @@
                     <h2 class="blog-post-title"><a href="{:U('Home/Index/detailArticle')}?id={$list.id}">{$list.title}</a></h2>
 
                     <p class="blog-post-meta">
-                        {$list.create_time|strtotime|date="F d",###} by
-                        <a href="{:U('Resume/resume')}?id={$list.uid}">
-                            {$list.username}
-                        </a>
+                        {$list.create_time|strtotime|date="F d",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a>
                     </p>
+
                     <p class="pull-right">
                         <span class="glyphicon glyphicon-heart"></span> 收藏(1)
                         <span class="glyphicon glyphicon-comment"></span> 评论(2)
@@ -33,17 +31,16 @@
                         <span class="glyphicon glyphicon-trash"></span> <a href="" id="deleteArticle">删除</a>
                         <if condition="$list.public eq 0">
                             <span class="glyphicon glyphicon-cloud"></span> <a class="pull-right" href="" id="chgStu">公开此文章</a>
-                        <else/>
+                            <else/>
                             <span class="glyphicon glyphicon-cloud"></span> <a class="pull-right" href="" id="chgStu">不公开此文章</a>
                         </if>
-
                     </p>
 
                     <p class="blog-post-meta">
                         <foreach name="tags" item="t">
-                            <span class="label ">{$t.name|trim=###}</span>&nbsp;
-                        </foreach>                    
-                    </p> 
+                            <span class="label">{$t.name|trim=###}</span>&nbsp;
+                        </foreach>
+                    </p>
 
                     <hr>
                     <p>{$list.content|htmlspecialchars_decode=###}</p>
@@ -58,7 +55,7 @@
                             <textarea class="form-control" rows="3" name="comment_text"></textarea>
                         </div>
                         <input type="hidden" value="{$list.id}" name="article_id">
-                        <button type="button" class="btn btn-success" id="sub_comment">Submit</button>
+                        <button type="button" class="btn btn-success btn-sm" id="sub_comment">Submit</button>
                 </form>
                 <br>
                 <br>

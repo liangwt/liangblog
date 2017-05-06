@@ -200,7 +200,7 @@ class ArticleController extends CommonController{
 	 */
 	public function saveComment(){
 		$comment_data = [
-			"uid" => 0,
+			"uid" => $_SESSION["uid"],
 			"article_id" => I("post.article_id"),
 			"content" => I("post.comment_text"),
 			"time" => date("Y-m-d H:m:s"),

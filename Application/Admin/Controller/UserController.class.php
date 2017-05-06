@@ -47,7 +47,7 @@ class UserController extends CommonController
         $this->assign([
            "role" => $roleL,
         ]);
-        $this->display();
+        $this->display(T("Admin@User/addUser"));
     }
 
     /**
