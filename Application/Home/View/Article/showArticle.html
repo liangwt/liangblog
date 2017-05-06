@@ -5,39 +5,46 @@
 <script type="text/javascript" src="__PUBLIC__/goup/goup.js"></script>
 <include file="common/nav"/>
 
-    <!-- Page Content -->
-    <div class="container">
+<!-- Page Content -->
+<div class="container">
 
-        <div class="row">
+    <div class="row">
 
-            <!-- Blog Entries Column -->
-            <div class="col-md-9">
-                <foreach name="lists" item="list">
+        <!-- Blog Entries Column -->
+        <div class="col-md-9">
+            <foreach name="lists" item="list">
                 <!-- First Blog Post -->
-                    <h2>
-                            <a href="{:U('Home/Index/detailArticle')}?id={$list.id}">{$list.title}</a>
-                    </h2>
-                <p><span class="glyphicon glyphicon-time"></span>{$list.create_time|strtotime|date="F d,Y  ",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a></p>
+                <h2>
+                    <a href="{:U('Home/Index/detailArticle')}?id={$list.id}">{$list.title}</a>
+                </h2>
+                <p>
+                    <span class="glyphicon glyphicon-tags"></span> 啊啊啊
+                </p>
                 <article>
                     <p class="showArticle_article">{$list.content|htmlspecialchars_decode|strip_tags|mb_substr=###,0,600}</p>
                 </article>
+                <p>
+                    <span class="glyphicon glyphicon-heart"></span> 收藏(1)
+                    <span class="glyphicon glyphicon-comment"></span> 评论(2)
+                    <span class="glyphicon glyphicon-time"></span> {$list.create_time|strtotime|date="F d,Y  ",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a>
+                </p>
                 <hr>
-                </foreach>
-                <!--页码 -->
-                <div class="row center-block">
+            </foreach>
+            <!--页码 -->
+            <div class="row center-block">
 
-                        <ul class="pagination">
-                            {$page}
-                        </ul>
+                <ul class="pagination">
+                    {$page}
+                </ul>
 
-                </div>
-                <!-- Pager -->
             </div>
-            <include file="common/sidebar"/>
+            <!-- Pager -->
         </div>
-        <!-- /.row -->
-        <include file="Home@common/footer"/>
+        <include file="common/sidebar"/>
     </div>
-    <!-- /.container -->
+    <!-- /.row -->
+    <include file="Home@common/footer"/>
+</div>
+<!-- /.container -->
 </body>
 </html>

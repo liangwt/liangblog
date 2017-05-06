@@ -10,6 +10,7 @@
     var commentUrl = "{:U('Article/saveComment')}";
     var deleteUrl = "{:U('Article/deleteArticle')}?id={$list.id}";
     var chgstatusUrl = "{:U('Home/Article/chgstatus')}?id={$list.id}";
+    var checkLoginURL = "{:U('Home/Login/LoginAndHasAccess')}";
 </script>
 <include file="common/nav" />
 
@@ -19,18 +20,24 @@
                 <div class="blog-post">
                     <h2 class="blog-post-title"><a href="{:U('Home/Index/detailArticle')}?id={$list.id}">{$list.title}</a></h2>
 
-                    <p class="blog-post-meta">{$list.create_time|strtotime|date="F d",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a>
-                        <a class="pull-right" href="{:U('Article/editArticle')}?id={$list.id}">编辑</a>
-                    
-                        <a class="pull-right" href="" id="deleteArticle">删除&nbsp;&nbsp;&nbsp;</a>
+                    <p class="blog-post-meta">
+                        {$list.create_time|strtotime|date="F d",###} by
+                        <a href="{:U('Resume/resume')}?id={$list.uid}">
+                            {$list.username}
+                        </a>
+                    </p>
+                    <p class="pull-right">
+                        <span class="glyphicon glyphicon-heart"></span> 收藏(1)
+                        <span class="glyphicon glyphicon-comment"></span> 评论(2)
+                        <span class="glyphicon glyphicon-edit"></span> <a href="{:U('Article/editArticle')}?id={$list.id}">编辑</a>
+                        <span class="glyphicon glyphicon-trash"></span> <a href="" id="deleteArticle">删除</a>
                         <if condition="$list.public eq 0">
-                            <a class="pull-right" href="" id="chgStu">公开此文章&nbsp;&nbsp;&nbsp;</a>
+                            <span class="glyphicon glyphicon-cloud"></span> <a class="pull-right" href="" id="chgStu">公开此文章</a>
                         <else/>
-                            <a class="pull-right" href="" id="chgStu">不公开此文章&nbsp;&nbsp;&nbsp;</a>
+                            <span class="glyphicon glyphicon-cloud"></span> <a class="pull-right" href="" id="chgStu">不公开此文章</a>
                         </if>
 
                     </p>
-
 
                     <p class="blog-post-meta">
                         <foreach name="tags" item="t">
@@ -48,11 +55,6 @@
                 <form role="form" id="comment">
                     <legend>发布评论</legend>
                         <div class="form-group">
-                            <label for="username">用户名</label>
-                            <input type="text" class="form-control" name="username" placeholder="Enter username">
-                        </div>
-                        <div class="form-group">
-                            <label for="comment">输入评论</label>
                             <textarea class="form-control" rows="3" name="comment_text"></textarea>
                         </div>
                         <input type="hidden" value="{$list.id}" name="article_id">

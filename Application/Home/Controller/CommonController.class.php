@@ -2,7 +2,7 @@
 namespace Home\Controller;
 use Think\Controller;
 
-class CommonController extends controller{
+class CommonController extends Controller{
 
 	public function _initialize(){
 		$ip = get_client_ip();

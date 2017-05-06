@@ -17,11 +17,18 @@
                     <h2>
                         <a href="{:U('Home/Index/detailArticle')}?id={$list.id}">{$list.title}</a>
                     </h2>
-                <p><span class="glyphicon glyphicon-time"></span>{$list.create_time|strtotime|date="F d,Y  ",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a></p>
-                <article>
-                    <p class="showArticle_article">{$list.content|htmlspecialchars_decode|strip_tags|mb_substr=###,0,600}</p>
-                </article>
-                <hr>
+                    <p>
+                        <span class="glyphicon glyphicon-tags"></span> 啊啊啊
+                    </p>
+                    <article>
+                        <p class="showArticle_article">{$list.content|htmlspecialchars_decode|strip_tags|mb_substr=###,0,600}</p>
+                    </article>
+                    <p>
+                        <span class="glyphicon glyphicon-heart"></span> 收藏(1)
+                        <span class="glyphicon glyphicon-comment"></span> 评论(2)
+                        <span class="glyphicon glyphicon-time"></span> {$list.create_time|strtotime|date="F d,Y  ",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a>
+                    </p>
+                    <hr>
                 </foreach>
                 <!--页码 -->
                 <div class="row center-block">

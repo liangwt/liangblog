@@ -90,24 +90,43 @@ $(function(){
     });
 	//提交评论信息
 	$("#sub_comment").click(function(){
-		if($("textarea[name=comment_text]").val() == ""){
-			$("textarea[name=comment_text]").focus();
-			return false;
-		}
-		$.ajax({
-			url:commentUrl,
-			type:"POST",
-			//serialize() 输入框中必须有name属性
-			data:$("#comment").serialize(),
-			dataType:"json",
-			success:function(msg){
-				//var json_data = $.parseJSON(msg);
-				if(msg.status){
-					location.reload();
-				}
-			}
-		})
+        var flag = false;
+        $.ajax({
+            type:"POST",
+            url:checkLoginURL,
+            async:false,
+            data:{},
+            success:function(msg){
+                var json_data = $.parseJSON(msg);
+                if(!json_data.status){
+                    toastr.error("请登录...");
+                    $('#login').modal();
+                    return false;
+                }else{
+                    if($("textarea[name=comment_text]").val() == ""){
+                        $("textarea[name=comment_text]").focus();
+                        toastr.info("输入不能为空");
+                        return false;
+                    }
+                    $.ajax({
+                        url:commentUrl,
+                        type:"POST",
+                        //serialize() 输入框中必须有name属性
+                        data:$("#comment").serialize(),
+                        dataType:"json",
+                        success:function(msg){
+                            //var json_data = $.parseJSON(msg);
+                            if(msg.status){
+                                location.reload();
+                            }
+                        }
+                    })
+                }
+            }
+        });
+        return flag;
 	})
+
     //顶评论ajax处理
     $("#up-comment").click(function(){
         $.ajax({

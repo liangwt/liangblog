@@ -3,7 +3,7 @@ namespace Home\Controller;
 use Think\Controller;
 
 class LoginController extends Controller{
-    //ajax判断是否有读取文章的权限
+    //ajax判断是否登录并且没有被锁定
     public function LoginAndHasAccess(){
         if(!IS_AJAX){
             E('页面不存在');

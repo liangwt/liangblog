@@ -20,7 +20,13 @@
                 <div class="blog-post">
                     <h2 class="blog-post-title"><a href="{:U('Home/Index/detailArticle')}?id={$list.id}">{$list.title}</a></h2>
 
-                    <p class="blog-post-meta">{$list.create_time|strtotime|date="F d",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a>
+                    <p class="blog-post-meta">
+                        {$list.create_time|strtotime|date="F d",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a>
+                    </p>
+
+                    <p class="pull-right">
+                        <span class="glyphicon glyphicon-heart"></span> 收藏(1)
+                        <span class="glyphicon glyphicon-comment"></span> 评论(2)
                     </p>
 
                     <p class="blog-post-meta">
