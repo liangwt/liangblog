@@ -36,13 +36,14 @@ class IndexController extends Controller {
      */
     public function showArticle(){
         $article = D("ArticleView");
-
         //分页之后的文章列表
         $this->articleL = $article->where(["public"=>1])
             ->group("article.id")
             ->order('last_edit_time desc')
             ->page(I("get.p",1).',5')
             ->select();
+        /*print_r($this->articleL);
+        exit();*/
         $this->assign('lists',$this->articleL);// 赋值数据集
         //页码标签
         $count = $article->where(["public"=>1])->count("distinct article.id");

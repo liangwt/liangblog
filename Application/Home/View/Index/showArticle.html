@@ -17,9 +17,9 @@
                     <h2>
                         <a href="{:U('Home/Index/detailArticle')}?id={$list.id}">{$list.title}</a>
                     </h2>
-                    <p>
+                    <!--<p>
                         <span class="glyphicon glyphicon-tags"></span> 啊啊啊
-                    </p>
+                    </p>-->
                     <article>
                         <p class="showArticle_article">{$list.content|htmlspecialchars_decode|strip_tags|mb_substr=###,0,600}</p>
                     </article>

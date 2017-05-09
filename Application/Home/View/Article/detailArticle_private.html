@@ -24,23 +24,22 @@
                         {$list.create_time|strtotime|date="F d",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a>
                     </p>
 
-                    <p class="pull-right">
-                        <span class="glyphicon glyphicon-heart"></span> 收藏(1)
-                        <span class="glyphicon glyphicon-comment"></span> 评论(2)
-                        <span class="glyphicon glyphicon-edit"></span> <a href="{:U('Article/editArticle')}?id={$list.id}">编辑</a>
-                        <span class="glyphicon glyphicon-trash"></span> <a href="" id="deleteArticle">删除</a>
-                        <if condition="$list.public eq 0">
-                            <span class="glyphicon glyphicon-cloud"></span> <a class="pull-right" href="" id="chgStu">公开此文章</a>
-                            <else/>
-                            <span class="glyphicon glyphicon-cloud"></span> <a class="pull-right" href="" id="chgStu">不公开此文章</a>
-                        </if>
-                    </p>
-
-                    <p class="blog-post-meta">
+                    <div class="blog-post-meta">
                         <foreach name="tags" item="t">
                             <span class="label">{$t.name|trim=###}</span>&nbsp;
                         </foreach>
-                    </p>
+                        <div class="pull-right">
+                            <span class="glyphicon glyphicon-heart"></span> 收藏(1)
+                            <span class="glyphicon glyphicon-comment"></span> 评论(2)
+                            <span class="glyphicon glyphicon-edit"></span> <a href="{:U('Article/editArticle')}?id={$list.id}">编辑</a>
+                            <span class="glyphicon glyphicon-trash"></span> <a href="" id="deleteArticle">删除</a>
+                            <if condition="$list.public eq 0">
+                                <span class="glyphicon glyphicon-cloud"></span> <a class="pull-right" href="" id="chgStu">公开此文章</a>
+                                <else/>
+                                <span class="glyphicon glyphicon-cloud"></span> <a class="pull-right" href="" id="chgStu">不公开此文章</a>
+                            </if>
+                        </div>
+                    </div>
 
                     <hr>
                     <p>{$list.content|htmlspecialchars_decode=###}</p>
