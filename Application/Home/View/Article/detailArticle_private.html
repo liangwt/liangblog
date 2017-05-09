@@ -21,7 +21,7 @@
                     <h2 class="blog-post-title"><a href="{:U('Home/Index/detailArticle')}?id={$list.id}">{$list.title}</a></h2>
 
                     <p class="blog-post-meta">
-                        {$list.create_time|strtotime|date="F d",###} by <a href="{:U('Resume/resume')}?id={$list.uid}">{$list.username}</a>
+                        <span class="glyphicon glyphicon-calendar"></span> {$list.create_time|strtotime|date="F d",###}
                     </p>
 
                     <div class="blog-post-meta">
