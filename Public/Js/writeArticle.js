@@ -90,7 +90,8 @@ $(function(){
 		var html  = editor.$txt.html();
 		var title = $("input[name=title]").val();
 		var classification = $("select option:selected").val();
-		var public = $("[name=my-checkbox]:checked").val() || 0;
+		var public = $("input[name=public]").prop("checked")?0:1;
+		alert(public);
 		var tag = new Array();
         //把标签添加到数组
 		$("span.tag").each(function(i,n){

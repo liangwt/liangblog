@@ -24,14 +24,12 @@ $(function(){
 
     //文章标题不能为空
     $("input[name=title]").blur(function(){
-    	if($(this).val().length==0){
-	    	$(this).siblings("span").show()
-	    		   .parent().addClass("has-error");	
-	    	toastr.warning("标题不能为空");
-    	}		       
+        if($(this).val().length==0){
+            $(this).parent("div").addClass("has-error");
+            toastr.warning("标题不能为空");
+        }
     }).focus(function(){
-    	$(this).siblings("span").hide()
-	    	   .parent().removeClass("has-error");	
+        $(this).parent("div").removeClass("has-error");
     })
 
     //添加分类模态框
@@ -67,18 +65,10 @@ $(function(){
     	
     })
 
-   	//本地多标签输入框
-    $("input[name=tag]").tagsInput({
-    	'defaultText':'添加标签',
-    	'height':'100px',
-   		'width':'100%',
-   		'delimiter': [',',';'], 
-    });
-    $.each(tags,function(index,tag){
-        $("input[name=tag]").addTag(tag.name);
-    });  
-
-    
+    //如果public为0 勾选
+    if(public==0){
+        $("input[name=public]").prop("checked",true);
+    }
     var article_id = $("input[name=article_id]").val();
 
     //通过ajax提交博客信息到服务器
@@ -86,6 +76,7 @@ $(function(){
 		var html  = editor.$txt.html();
 		var title = $("input[name=title]").val();
 		var classification = $("select option:selected").val();
+        var public = $("[name=my-checkbox]:checked").val() || 0;
 		var tag = new Array();
         //把标签添加到数组
 		$("span.tag > span").each(function(i,n){
@@ -104,7 +95,8 @@ $(function(){
 				"content":html,
 				"title":title,
 				"tag":tag,
-				"classification":classification
+				"classification":classification,
+                "public":public
 			},
     		success:function(msg){                     
                 var json_data = $.parseJSON(msg);

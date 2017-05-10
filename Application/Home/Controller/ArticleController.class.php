@@ -54,6 +54,8 @@ class ArticleController extends CommonController{
             $article = $articleM->where("id=".$article_id)->find();
             $tag = M("tag") -> where("article_id=".$article_id)->select();
         }
+        print_r($article);
+        exit();
         $this->assign(array(
             "article_info" => $article,
             "tag" => json_encode($tag),
