@@ -40,51 +40,50 @@
 <!--main -->
 <div class="container">
     <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label class="control-label" for="title">文章标题</label>
-                        <input type="text" class="form-control" id="title" name="title" placeholder="文章标题">
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" rows="20" id="writearticle"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="classification">分类</label>
-                        <div>
-                            <select name="classification" class="form-control">
-                                <option value="0" id="choose">选择分类</option>
-                                <foreach name="classification" item="cla">
-                                    <option value="{$cla.id}">{$cla.classification}</option>
-                                </foreach>
-                                <option value="add" id="add">新建分类</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="tag">标签</label>
-                        <div class="tagsinput-primary">
-                            <input type="text" class="tagsinput form-control " data-role="tagsinput" name="tag" style="display: none;" placeholder="标签">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="checkbox" for="public">
-                            <input type="checkbox" value="1" name="public" id="public" data-toggle="checkbox" class="custom-checkbox">
-                            <span class="icons">
-                                <span class="icon-unchecked"></span>
-                                <span class="icon-checked"></span>
-                            </span>
-                            设为私密
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-1" style="padding-left: 0px">
-                            <button type="button" id="publish_btn" class="btn btn-success"><span
-                                    class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;发布
-                            </button>
-                        </div>
-                    </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="control-label" for="title">文章标题</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="文章标题">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" rows="20" id="writearticle"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="classification">分类</label>
+                <div>
+                    <select name="classification" class="form-control">
+                        <option value="0" id="choose">选择分类</option>
+                        <foreach name="classification" item="cla">
+                            <option value="{$cla.id}">{$cla.classification}</option>
+                        </foreach>
+                        <option value="add" id="add">新建分类</option>
+                    </select>
                 </div>
             </div>
+            <div class="form-group">
+                <label for="tag">标签</label>
+                <div class="tagsinput-primary">
+                    <input type="text" class="tagsinput form-control " data-role="tagsinput" name="tag" style="display: none;" placeholder="标签">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="checkbox" for="public">
+                    <input type="checkbox" value="1" name="public" id="public" data-toggle="checkbox" class="custom-checkbox">
+                    <span class="icons">
+                        <span class="icon-unchecked"></span>
+                        <span class="icon-checked"></span>
+                    </span>
+                    设为私密
+                </label>
+            </div>
+            <div class="form-group">
+                <button type="button" id="publish_btn" class="btn btn-success">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+                    </span>&nbsp;&nbsp;发布
+                </button>
+            </div>
+        </div>
+    </div>
     <include file="common/footer"/>
 </div>
 

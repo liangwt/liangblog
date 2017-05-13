@@ -1,11 +1,10 @@
 <include file="common/header" title="发布文章"/>
 <!--引入wangEditor.css-->
 <script type="text/javascript">
-	var detailArticle = "{:U('Article/detailArticle')}"; 
+	var detailArticle = "{:U('Home/Index/detailArticle')}";
 	var saveArticleUrl = "{:U('Article/saveArticle')}?id={$article_info.id}";
 	var classUrl = "{:U('Article/saveClassification')}";
 	var uploadImgUrl = "{:U('Article/uploadPic')}";
-	var tags = {$tag};//读取服务器传来的标签
 </script>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/wangEditor/css/wangEditor.min.css">
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/highlightJS/styles/atelier-cave.dark.css">
@@ -45,7 +44,7 @@
 						<label class="control-label" for="title">文章标题</label>
 						<input type="text" class="form-control" name="title" id="title" placeholder="文章标题" value="{$article_info.title}">
 					</div>
-					<div>
+					<div class="form-group">
 						<textarea class="form-control" rows="20" id="editarticle">{$article_info.content}</textarea>
 					</div>
 					<div class="form-group">
@@ -68,18 +67,18 @@
 					<div class="form-group">
 						<label for="tag">标签</label>
 						<div class="tagsinput-primary">
-							<input type="text" class="tagsinput form-control " data-role="tagsinput" name="tag" style="display: none;" placeholder="标签">
+							<input type="text" value="{$tag}" class="tagsinput form-control " data-role="tagsinput" name="tag" style="display: none;" placeholder="标签">
 						</div>
 					</div>
 					<div class="form-group">
 						<div>
-						<input type="hidden" class="form-control" name="edit" value="{$edit}">
-						<input type="hidden" class="form-control" name="article_id" value="{$article_id}">
+							<input type="hidden" class="form-control" name="edit" value="{$edit}">
+							<input type="hidden" class="form-control" name="article_id" value="{$article_id}">
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="checkbox" for="my-checkbox">
-							<input type="checkbox" value="1" name="my-checkbox" id="my-checkbox" data-toggle="checkbox" class="custom-checkbox">
+						<label class="checkbox" for="public">
+							<input type="checkbox" <if condition="$article_info.public eq 0">checked="checked"</if> name="public" id="public" data-toggle="checkbox" class="custom-checkbox">
 							<span class="icons">
                                 <span class="icon-unchecked"></span>
                                 <span class="icon-checked"></span>
@@ -88,11 +87,15 @@
 						</label>
 					</div>
 					<div class="form-group">
-						<button type="button" id="publish_btn" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;发布</button>
+						<button type="button" id="publish_btn" class="btn btn-success">
+							<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+							</span>&nbsp;&nbsp;发布
+						</button>
 					</div>
 				</div>
 			</div>
 		</div>
+	<include file="common/footer"/>
 	</div>
 	<!--main end-->
 </body>

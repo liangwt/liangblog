@@ -91,12 +91,7 @@ $(function(){
 		var title = $("input[name=title]").val();
 		var classification = $("select option:selected").val();
 		var public = $("input[name=public]").prop("checked")?0:1;
-		alert(public);
-		var tag = new Array();
-        //把标签添加到数组
-		$("span.tag").each(function(i,n){
-			tag[i] = $(this).text();	
-		});
+        var tag = $("input[name=tag]").tagsinput('items');
 		if(title == ''){
 			toastr.warning("标题不能为空");
             $("input[name=title]").focus();

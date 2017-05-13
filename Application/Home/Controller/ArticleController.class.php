@@ -52,15 +52,15 @@ class ArticleController extends CommonController{
 
         if(!empty($article_id)){
             $article = $articleM->where("id=".$article_id)->find();
-            $tag = M("tag") -> where("article_id=".$article_id)->select();
+            $tag = M("tag") ->field("name")-> where("article_id=".$article_id)->select();
+            foreach ($tag as $name){
+                $p[] = $name["name"];
+            }
+            $tag= implode(",",$p);
         }
-        print_r($article);
-        exit();
         $this->assign(array(
             "article_info" => $article,
-            "tag" => json_encode($tag),
-            "edit" => $edit,
-            "article_id"=>$id,
+            "tag" => $tag,
             ));
         //展示分类下拉列表
         $classification = D("classification")->where(array("uid"=>$_SESSION['uid']))->select();
@@ -111,6 +111,7 @@ class ArticleController extends CommonController{
                 "last_edit_time"    => date("Y-m-d H:m:s"),
                 "classification_id" => $classification,
                 "uid"               => $_SESSION["uid"],
+                "public"            => $public,
                 );  
             $articleM -> where(["id"=>$article_id])->save($article);
             $tagM -> where(["article_id"=>$article_id]) -> delete();
