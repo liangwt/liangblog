@@ -69,13 +69,13 @@ class LoginController extends Controller{
 			'password' => md5($password),
 			'reg_time' => date("Y-m-d H:i:s"),
 			'user_info' => array(
-				'username' => "User_".$account,
+				'username' => "User_".substr($account,0,3),
 				),
 			);
 		$uid = D('Home/UserRelation') -> relation(true)-> add($registerAccount);
 		if($uid){
 			$_SESSION['uid']      = $uid;
-			$_SESSION['username'] = $account;
+			$_SESSION['username'] = "User_".substr($account,0,3);
 			//加入cookie
 			$ip = get_client_ip();
 			setcookie('auto',encryption($ip."|".$uid),time()+3600*24*7,'/');
@@ -98,7 +98,7 @@ class LoginController extends Controller{
 
 		//验证账号是否存在
 		$existAccount = array('account'=>$account);
-		$result = D('user')->where($existAccount)->find();
+		$result = D('Home/UserRelation') -> relation(true)->where($existAccount)->find();
 		if($result == null){
 			$responseJsData['status'] = 0;
 			$responseJsData['message'] = '账号不存在';
@@ -128,7 +128,7 @@ class LoginController extends Controller{
         }
 		//
 		$_SESSION['uid'] = $result['id'];
-		$_SESSION['username'] = $account;
+		$_SESSION['username'] = $result["user_info"]["username"];
 		if($auto){
 			//加入cookie
 			$ip = get_client_ip();

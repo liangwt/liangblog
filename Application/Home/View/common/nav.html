@@ -1,9 +1,9 @@
 <script type="text/javascript">
-  var registerurl = "{:U('Home/login/register')}";
-  var loginurl = "{:U('Home/login/login')}";
-  var logouturl = "{:U('Home/login/logout')}";
-  var goup = "__PUBLIC__/image/nav/up.png";
-  var checkLoginURL = "{:U('Home/Login/LoginAndHasAccess')}";
+    var registerurl = "{:U('Home/login/register')}";
+    var loginurl = "{:U('Home/login/login')}";
+    var logouturl = "{:U('Home/login/logout')}";
+    var goup = "__PUBLIC__/image/nav/up.png";
+    var checkLoginURL = "{:U('Home/Login/LoginAndHasAccess')}";
 </script>
 <script type="text/javascript" src="__PUBLIC__/Js/nav.js"></script>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/goup/goup.css">
@@ -13,84 +13,106 @@
 
 <body>
 
-<div class="actGotop"><image src="__PUBLIC__/image/nav/up.png" id="Top"></image></div>
+<div class="actGotop">
+    <image src="__PUBLIC__/image/nav/up.png" id="Top"></image>
+</div>
 
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <h3 class="modal-title" id="myModalLabel">登录</h3>
-      </div>
-      <div class="modal-body">
-            <div class="form-group">
-              <label for="account">账户</label>
-              <input type="text" name="account" class="form-control" id="login_account" placeholder="账户">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">登录</h3>
             </div>
-            <div class="form-group">
-              <label for="login_password">密码</label>
-              <input type="password" name="password" class="form-control" id="login_password" placeholder="密码">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="login_account">账户</label>
+                    <input type="text" name="account" class="form-control" id="login_account" placeholder="账户">
+                </div>
+                <div class="form-group">
+                    <label for="login_password">密码</label>
+                    <input type="password" name="password" class="form-control" id="login_password" placeholder="密码">
+                </div>
+                <div class="form-group">
+                    <label for="login_code">验证码</label>
+                    <input type="text" name="password" id="login_code" class="form-control" placeholder="验证码">
+                </div>
+                <div class="form-group">
+                    <image class="img-responsive" src="{:U('Home/login/verifyCode')}" id="verifyCode"
+                           style="padding: 10px 0px 10px 0px;">
+                </div>
+                <div class="form-group">
+                    <label class="checkbox" for="auto_login">
+                        <input type="checkbox" name="auto" id="auto_login" value=1 data-toggle="checkbox"
+                               class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span
+                            class="icon-checked"></span></span>
+                        自动登录
+                    </label>
+                </div>
             </div>
-            <div class="form-group">
-              <label for="login_code">验证码</label>
-              <input type="text" name="password" id="login_code" class="form-control" placeholder="验证码">
-            </div>
-            <div class="form-group">
-                <image class="img-responsive" src="{:U('Home/login/verifyCode')}" id="verifyCode" style="padding: 10px 0px 10px 0px;">
-            </div>
-            <div class="form-group">
-                <label class="checkbox" for="auto_login">
-                    <input type="checkbox" name="auto" id="auto_login" value=1 data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
-                    自动登录
-                </label>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal"><span
+                        class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;&nbsp;关闭
+                </button>
+                <div id="btn_submit" class="pull-left" data-dismiss="modal"><a href="#" class="login-link"
+                                                                               data-toggle="modal"
+                                                                               data-target="#register">没有账号？点击注册</a>
+                </div>
+                <button type="button" id="btn_login" class="btn btn-success btn-sm" data-dismiss="modal"><span
+                        class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;登陆
+                </button>
             </div>
         </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;&nbsp;关闭</button>
-        <div id="btn_submit" class="pull-left" data-dismiss="modal"><a href="#" class="login-link" data-toggle="modal" data-target="#register">没有账号？点击注册</a></div>
-        <button type="button" id="btn_login" class="btn btn-success btn-sm" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;登陆</button>
-      </div>
     </div>
-  </div>
 </div>
 
 <!--register model -->
 <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <h4 class="modal-title" id="myModalLabel">注册</h4>
-      </div>
-      <div class="modal-body">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">注册</h4>
+            </div>
+            <div class="modal-body">
 
-        <div class="form-group">
-            <label for="register_account">账户&nbsp;&nbsp;(仅支持数字)</label>
-            <input type="text" name="account" class="form-control" id="register_account" placeholder="账户" aria-describedby="helpBlock">
+                <div class="form-group">
+                    <label for="register_account">账户&nbsp;&nbsp;(仅支持数字)</label>
+                    <input type="text" name="account" class="form-control" id="register_account" placeholder="账户"
+                           aria-describedby="helpBlock">
+                </div>
+                <div class="form-group">
+                    <label for="register_password">密码</label>
+                    <input type="password" name="password" class="form-control" id="register_password" placeholder="密码">
+                </div>
+                <div class="form-group">
+                    <label for="register_rpassword">重复密码</label>
+                    <input type="password" name="rpassword" class="form-control" id="register_rpassword"
+                           placeholder="重复密码">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-sm right" data-dismiss="modal"><span
+                        class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;&nbsp;关闭
+                </button>
+                <button type="button" id="btn_register" class="btn btn-sm btn-primary" data-dismiss="modal"><span
+                        class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp;&nbsp;注册
+                </button>
+                <div id="btn_submit" class="pull-left" data-dismiss="modal"><a href="#" data-toggle="modal"
+                                                                               data-target="#login">已有账号？点击登陆</a></div>
+            </div>
         </div>
-        <div class="form-group">
-          <label for="register_password">密码</label>
-          <input type="password" name="password" class="form-control" id="register_password" placeholder="密码">
-        </div>
-        <div class="form-group">
-          <label for="register_rpassword">重复密码</label>
-          <input type="password" name="rpassword" class="form-control" id="register_rpassword" placeholder="重复密码">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default btn-sm right" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;&nbsp;关闭</button>
-        <button type="button" id="btn_register" class="btn btn-sm btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp;&nbsp;注册</button>
-        <div id="btn_submit" class="pull-left" data-dismiss="modal"><a href="#" data-toggle="modal" data-target="#login">已有账号？点击登陆</a></div>
-      </div>
     </div>
-  </div>
-</div> 
- 
+</div>
+
 <!--nav -->
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -109,25 +131,25 @@
                 <if condition="!isset($_SESSION['uid'])">
                     <li><a href="#" data-toggle="modal" data-target="#register">注册</a></li>
                     <li><a href="#" data-toggle="modal" data-target="#login">登录</a></li>
-                <else/>
-                    <a class="navbar-brand personPhoto" href="#">
-                      <img class="media-object" src="http://placehold.it/64x64" alt="" style="width: 30px;height: 30px;border-radius:50%">
+                    <else/>
+                    <a class="navbar-brand" href="#">
+                        <img src="" alt="" style="width: 30px;height: 30px;border-radius:50%">
                     </a>
-
                     <p class="navbar-text">{$Think.session.username}</p>
                     <li><a href="{:U('Home/Article/writeArticle')}">发布文章</a></li>
                     <li id="nav-blog"><a href="{:U('Home/Article/showArticle')}">我的文章</a></li>
                     <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">个人中心<strong class="caret"></strong></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">个人中心<strong
+                                class="caret"></strong></a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                              <a href="{:U('Home/user/editBasic')}">修改个人信息</a>
+                                <a href="{:U('Home/user/editBasic')}">修改个人信息</a>
                             </li>
                             <li>
-                              <a href="#">消息中心</a>
+                                <a href="#">消息中心</a>
                             </li>
                             <li>
-                              <a href="{:U('Admin/Article/index')}">文章管理</a>
+                                <a href="{:U('Admin/Article/index')}">文章管理</a>
                             </li>
                             <li>
                                 <a href="{:U('Admin/User/index')}">用户管理</a>
@@ -135,14 +157,14 @@
                             <li class="divider">
                             </li>
                             <li>
-                          <a id="logout" href="#">退出登录</a>
+                                <a id="logout" href="#">退出登录</a>
                             </li>
                         </ul>
-                    </li>  
+                    </li>
                 </if>
             </ul>
-        </div>  
-    </div>    
+        </div>
+    </div>
 </nav>
 
 
