@@ -195,7 +195,6 @@ class ArticleController extends CommonController{
 		}else{
 			echo json_encode(array("status"=>0,"message"=>"添加失败"));
 		}
-
 	}
 	/**
 	 * 保存ajax提交过来的评论
