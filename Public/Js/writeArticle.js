@@ -92,6 +92,7 @@ $(function(){
 		var classification = $("select option:selected").val();
 		var public = $("input[name=public]").prop("checked")?0:1;
         var tag = $("input[name=tag]").tagsinput('items');
+        var isOriginal=$("input[name=isOriginal]:checked").val();
 		if(title == ''){
 			toastr.warning("标题不能为空");
             $("input[name=title]").focus();
@@ -106,7 +107,8 @@ $(function(){
 				"title":title,
 				"tag":tag,
 				"classification":classification,
-                "public":public
+                "public":public,
+                "isOriginal":isOriginal
 			},
     		success:function(msg){                     
                 var json_data = $.parseJSON(msg);

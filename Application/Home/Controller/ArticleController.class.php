@@ -87,6 +87,7 @@ class ArticleController extends CommonController{
 		$tag            = I("post.tag");
         $article_id     = I("get.id");
         $public         = I("post.public",0);
+        $isOriginal     = I("post.isOriginal",1);
 
         $articleM = M("article");
         $tagM = M("tag");
@@ -100,6 +101,7 @@ class ArticleController extends CommonController{
                 "classification_id" => $classification,
                 "uid"               => $_SESSION["uid"],
                 "public"            => $public,
+                "isOriginal"        => $isOriginal,
                 );     
             $article_id = $articleM -> add($article);   
 
@@ -112,6 +114,7 @@ class ArticleController extends CommonController{
                 "classification_id" => $classification,
                 "uid"               => $_SESSION["uid"],
                 "public"            => $public,
+                "isOriginal"        => $isOriginal,
                 );  
             $articleM -> where(["id"=>$article_id])->save($article);
             $tagM -> where(["article_id"=>$article_id]) -> delete();

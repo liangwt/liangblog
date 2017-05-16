@@ -70,15 +70,15 @@ class UserController extends CommonController{
 
 		$user = M("user_info");
 		$result = $user->where("uid=".$_SESSION['uid'])->save($basicPost);
-		if($result){
+		if($result===false){
 		    $response = array(
-		        "status"=>1,
-                "message" => "信息修改成功",
+                "status" => 0,
+                "message" => "信息修改不成功",
             );
 		}else{
             $response = array(
-                "status" => 0,
-                "message" => "信息修改不成功",
+                "status"=>1,
+                "message" => "信息修改成功",
             );
         }
         echo json_encode($response);

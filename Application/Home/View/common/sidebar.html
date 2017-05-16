@@ -10,8 +10,11 @@
                 <ul class="list-unstyled">
                     <foreach name="classificationL" item="v">
                         <if condition="$v.classification neq null">
-                            <li class="center-block"><a href="#">{$v.classification}</a>&nbsp;<span
-                                    class="badge">{$v.classification_num}</span></li>
+                            <li class="center-block"><a href="#">{$v.classification}</a>&nbsp;
+                                <span class="badge">
+                                    {$v.classification_num}
+                                </span>
+                            </li>
                             <hr/>
                         </if>
                     </foreach>
