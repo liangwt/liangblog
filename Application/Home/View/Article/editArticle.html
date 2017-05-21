@@ -1,10 +1,10 @@
 <include file="common/header" title="发布文章"/>
 <!--引入wangEditor.css-->
 <script type="text/javascript">
-	var detailArticle = "{:U('Home/Index/detailArticle')}";
-	var saveArticleUrl = "{:U('Article/saveArticle')}?id={$article_info.id}";
-	var classUrl = "{:U('Article/saveClassification')}";
-	var uploadImgUrl = "{:U('Article/uploadPic')}";
+    var detailArticle = "{:U('Home/Index/detailArticle')}";
+    var saveArticleUrl = "{:U('Article/saveArticle')}?id={$article_info.id}";
+    var classUrl = "{:U('Article/saveClassification')}";
+    var uploadImgUrl = "{:U('Article/uploadPic')}";
 </script>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/wangEditor/css/wangEditor.min.css">
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/highlightJS/styles/atelier-cave.dark.css">
@@ -13,90 +13,120 @@
 <script type="text/javascript" src="__PUBLIC__/Js/editArticle.js"></script>
 
 <include file="common/nav"/>
-	<!--modal -->
-	<div class="modal fade" id="addClassification" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	        <h4 class="modal-title">添加分类</h4>
-	      </div>
-	      <div class="modal-body">
-	        <form role="form">
-				<div class="form-group has-feedback">
-					<input type="text" class="form-control" id="classification" placeholder="Enter classification">
-				</div>
-			</form>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal" id="close_btn">Close</button>
-	        <button type="button" class="btn btn-primary" id="add_class">Save changes</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	<!--modal end -->
-	<!--main -->
-	<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="form-group">
-						<label class="control-label" for="title">文章标题</label>
-						<input type="text" class="form-control" name="title" id="title" placeholder="文章标题" value="{$article_info.title}">
-					</div>
-					<div class="form-group">
-						<textarea class="form-control" rows="20" id="editarticle">{$article_info.content}</textarea>
-					</div>
-					<div class="form-group">
-						<label for="classification">分类</label>
-						<div>
-							<select name="classification" class="form-control">
-								<option value="0" id="choose">选择分类</option>
-								<foreach name="classification" item="cla">
-								<!-- 此处需要使用比较 标签<eq></eq> <if></if>标签不适用 -->
-									<eq name="cla.id" value="$article_info.classification_id">
-										<option value="{$cla.id}" selected="selected">{$cla.classification}</option>
-									<else/>
-										<option value="{$cla.id}">{$cla.classification}</option>
-									</eq>
-								</foreach> 
-								<option value="add" id="add">新建分类</option>
-							</select>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="tag">标签</label>
-						<div class="tagsinput-primary">
-							<input type="text" value="{$tag}" class="tagsinput form-control " data-role="tagsinput" name="tag" style="display: none;" placeholder="标签">
-						</div>
-					</div>
-					<div class="form-group">
-						<div>
-							<input type="hidden" class="form-control" name="edit" value="{$edit}">
-							<input type="hidden" class="form-control" name="article_id" value="{$article_id}">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="checkbox" for="public">
-							<input type="checkbox" <if condition="$article_info.public eq 0">checked="checked"</if> name="public" id="public" data-toggle="checkbox" class="custom-checkbox">
-							<span class="icons">
-                                <span class="icon-unchecked"></span>
-                                <span class="icon-checked"></span>
-                            </span>
-							设为私密
-						</label>
-					</div>
-					<div class="form-group">
-						<button type="button" id="publish_btn" class="btn btn-success">
-							<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
-							</span>&nbsp;&nbsp;发布
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	<include file="common/footer"/>
-	</div>
-	<!--main end-->
+<!--modal -->
+<div class="modal fade" id="addClassification" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">添加分类</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" id="classification" placeholder="Enter classification">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="close_btn">Close</button>
+                <button type="button" class="btn btn-primary" id="add_class">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--modal end -->
+<!--main -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 form-horizontal">
+            <div class="form-group">
+                <label class="control-label" for="title">文章标题</label>
+                <input type="text" class="form-control" name="title" id="title" placeholder="文章标题"
+                       value="{$article_info.title}">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" rows="20" id="editarticle">{$article_info.content}</textarea>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label" for="classification">分类</label>
+                <div class="col-sm-6">
+                    <select name="classification" class="form-control">
+                        <option value="0" id="choose">选择分类</option>
+                        <foreach name="classification" item="cla">
+                            <!-- 此处需要使用比较 标签<eq></eq> <if></if>标签不适用 -->
+                            <eq name="cla.id" value="$article_info.classification_id">
+                                <option value="{$cla.id}" selected="selected">{$cla.classification}</option>
+                                <else/>
+                                <option value="{$cla.id}">{$cla.classification}</option>
+                            </eq>
+                        </foreach>
+                        <option value="add" id="add">新建分类</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">标签</label>
+                <div class="col-sm-6">
+                    <div class="tagsinput-primary">
+                        <input type="text" value="{$tag}" class="tagsinput form-control " data-role="tagsinput"
+                               name="tag" style="display: none;" placeholder="标签">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">文章类型:</label>
+                <div class="col-sm-6">
+                    <if condition="$article_info.isoriginal eq 1">
+                        <label class="radio-inline">
+                            <input type="radio" name="isOriginal" id="isOriginal1" checked="checked" value="1"> 原创
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="isOriginal" id="isOriginal2" value="0"> 转载
+                        </label>
+                    <else/>
+                        <label class="radio-inline">
+                            <input type="radio" name="isOriginal" id="isOriginal1" value="1"> 原创
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="isOriginal" id="isOriginal2" checked="checked" value="0"> 转载
+                        </label>
+                    </if>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">不公开:</label>
+                <div class="col-sm-11">
+                    <label class="checkbox col-sm-1 control-label" for="public">
+                        <input type="checkbox" <if condition="$article_info.public eq 0">checked="checked"</if>
+                        name="public" id="public" data-toggle="checkbox" class="custom-checkbox">
+                        <span class="icons">
+                            <span class="icon-unchecked"></span>
+                            <span class="icon-checked"></span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <input type="hidden" class="form-control" name="edit" value="{$edit}">
+                    <input type="hidden" class="form-control" name="article_id" value="{$article_id}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-10">
+                    <button type="button" id="publish_btn" class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+                        </span>&nbsp;&nbsp;发布
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="common/footer"/>
+</div>
+<!--main end-->
 </body>
 </html>

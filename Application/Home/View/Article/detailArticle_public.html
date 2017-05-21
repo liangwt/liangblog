@@ -20,7 +20,11 @@
                 <div class="blog-post">
                     <h2 class="blog-post-title">
                         <a href="{:U('Home/Index/detailArticle')}?id={$list.id}">{$list.title}</a>
-                        <span class="badge" style="background-color: #E67E22">转</span>
+                        <if condition="$list.isoriginal eq 1">
+                            <span class="badge" style="background-color: #E67E22">原</span>
+                        <else/>
+                            <span class="badge" style="background-color: #E67E22">转</span>
+                        </if>
                     </h2>
 
                     <p class="blog-post-meta">

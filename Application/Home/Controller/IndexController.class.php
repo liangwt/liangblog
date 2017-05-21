@@ -69,6 +69,8 @@ class IndexController extends Controller {
             $article = D("ArticleView")->where("article.id=".$id)->find();//文章信息
             $comment = $this->showComment($id);
             $tags    = M("tag") -> where("article_id=".$id) -> select();//标签信息
+           /* print_r($article);
+            exit();*/
             $this -> assign([
                 "list"            => $article,
                 "classificationL" => $this->classificationL,

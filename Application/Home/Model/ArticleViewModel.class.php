@@ -13,6 +13,7 @@ class ArticleViewModel extends ViewModel{
 			"classification_id",
 			"uid",
             "public",
+            "isOriginal",
 			"_type" => "LEFT",
 			),
 		"user_info"  => array(
