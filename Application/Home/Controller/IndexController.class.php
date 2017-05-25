@@ -67,7 +67,6 @@ class IndexController extends Controller {
             recodeView($id);
             //展示文章信息
             $article = D("ArticleView")->where("article.id=".$id)->find();//文章信息
-            print_r($article);
             $comment = $this->showComment($id);
             $tags    = M("tag") -> where("article_id=".$id) -> select();//标签信息
            /* print_r($article);
