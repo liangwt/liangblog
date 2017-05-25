@@ -21,7 +21,7 @@ class ArticleController extends CommonController
     }
 
     /**
-     * 显示博客列表
+     * 显示自己的博客列表
      * @return [type] [description]
      */
     public function showArticle()

@@ -16,6 +16,11 @@
                 <!-- First Blog Post -->
                 <h2>
                     <a href="{:U('Home/Index/detailArticle')}?id={$list.id}">{$list.title}</a>
+                    <if condition="$list.isoriginal eq 1">
+                        <span class="badge" style="background-color: #E67E22">原</span>
+                        <else/>
+                        <span class="badge" style="background-color: #E67E22">转</span>
+                    </if>
                 </h2>
 <!--                <p>
                     <span class="glyphicon glyphicon-tags"></span> 啊啊啊
@@ -25,7 +30,7 @@
                 </article>
                 <p>
                     <span class="glyphicon glyphicon-heart"></span> 收藏(1)
-                    <span class="glyphicon glyphicon-comment"></span> 评论(2)
+                    <span class="glyphicon glyphicon-comment"></span> 评论{$list.comment_count}
                     <span class="glyphicon glyphicon-time"></span> {$list.create_time|strtotime|date="F d,Y  ",###}
                 </p>
                 <hr>

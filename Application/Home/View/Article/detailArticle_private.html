@@ -37,7 +37,7 @@
                         </foreach>
                         <div class="pull-right">
                             <span class="glyphicon glyphicon-heart"></span> 收藏(1)
-                            <span class="glyphicon glyphicon-comment"></span> 评论(2)
+                            <span class="glyphicon glyphicon-comment"></span> 评论({$list.comment_count})
                             <span class="glyphicon glyphicon-edit"></span> <a href="{:U('Article/editArticle')}?id={$list.id}">编辑</a>
                             <span class="glyphicon glyphicon-trash"></span> <a href="" id="deleteArticle">删除</a>
                             <if condition="$list.public eq 0">
