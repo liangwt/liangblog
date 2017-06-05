@@ -21,9 +21,9 @@ class UserController extends CommonController
         //用户管理
         $userL     = M("user")
             ->field("*,GROUP_CONCAT(rolename) as rolenames")
-            ->join("__USER_INFO__ on __USER_INFO__.uid=__USER__.id")
-            ->join("__USER_ROLE_RELATION__ on __USER__.id = __USER_ROLE_RELATION__.user_id")
-            ->join("__ROLE__ on __ROLE__.id = __USER_ROLE_RELATION__.role_id")
+            ->join("LEFT JOIN __USER_INFO__ on __USER_INFO__.uid=__USER__.id")
+            ->join("LEFT JOIN __USER_ROLE_RELATION__ on __USER__.id = __USER_ROLE_RELATION__.user_id")
+            ->join("LEFT JOIN __ROLE__ on __ROLE__.id = __USER_ROLE_RELATION__.role_id")
             ->group("blog_user.id")
             ->order("reg_time")
             ->page(I("get.p", 1), 5)
