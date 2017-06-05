@@ -65,7 +65,7 @@ class UserController extends CommonController
             "userList" => $userL,
             "fileTree" => array_merge($adminFileTree, $homeFileTree),
         ));
-        $this->display(T("Admin@/User/addRole"));
+        $this->display(T("Admin@User/addRole"));
     }
 
     /**
