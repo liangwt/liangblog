@@ -28,7 +28,7 @@ class UserController extends CommonController
             ->order("reg_time")
             ->page(I("get.p", 1), 5)
             ->select();
-        $userCount = M("user")->count();
+        $userCount = M("user")->group("blog_user.id")->count();
         $userPage  = new \Think\Page($userCount, 5);
         $userShow  = $userPage->show();
         $this->assign(array(
@@ -65,7 +65,7 @@ class UserController extends CommonController
             "userList" => $userL,
             "fileTree" => array_merge($adminFileTree, $homeFileTree),
         ));
-        $this->display(T("Admin@/User/addUser"));
+        $this->display(T("Admin@/User/addRole"));
     }
 
     /**
